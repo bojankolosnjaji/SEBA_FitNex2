@@ -1,0 +1,109 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Tutorials' /}
+#{set moreStyles:"
+  #mainContentDiv form table{
+	margin-left:10%;
+	}
+
+	#mainContentDiv form fieldset legend{
+	font-size: 1em;
+	}
+
+	#mainContentDiv table#searchResult{
+	width: 80%;
+	margin-left: 5%;
+	}
+      
+      #mainContentDiv form table td{
+        font-size:0.8em;
+      }     
+      
+      #mainContentDiv form legend{
+        font-size:0.85em;
+          font-weight:bold;
+      }
+          
+      #mainContentDiv h4{
+        padding-top: 0.2em;
+        text-align: left;  
+        height:10px;
+        margin-left: 1em;
+      }
+      
+      #mainContentDiv table th{
+       font-size: 0.9em;
+        width: 33%;
+      }  	
+      	
+" /}
+#{set tutorials:"current" /}
+#{set banner:"/public/images/banner_tutorials.png" /}
+<div>
+		<div class="navbar" id="contentnav">
+		  <div class="navbar-inner" >
+			<a class="brand" href="/Tutorials/tutorials.html">Tutorials</a>
+			<ul class="nav">
+			  <li><a href="/Tutorials/tutorials_beginner.html">Beginner</a></li>
+			  <li><a href="/Tutorials/tutorials_intermediate.html">Intermediate</a></li>
+			  <li><a href="/Tutorials/tutorials_expert.html">Expert</a></li>
+			</ul>
+		  </div>
+		</div>
+		</div>
+		
+      <div id="breadCrumbsDiv">	  
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/Tutorials/tutorials.html">Tutorials</a> <span class="divider">/</span></li>
+		</ul>
+	  </div>
+	<div id="content">
+        <h3>Recent Tutorials</h3>
+        <ul>
+        	#{list tutorialList, as:'tutorial'}
+    			<li><a href = "@{Tutorials.loadTutorial(tutorial.id)}">${tutorial.title}</a></li>
+			#{/list}     
+			#{else}
+			No tutorials for now
+			#{/else}     
+        </ul>
+        <form name="frmSearch" id="frmSearch" method="post">
+          <fieldset> <legend>Search for Tutorials</legend>
+            <table>
+              <tbody>
+                <tr>
+                  <td><input type="text" name="txtSearch" id="txtSearch" placeholder="Search" /></td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="selCategory" id="selCategory">
+                      <option value="muscle">Muscle</option>
+                      <option value="research">Research</option>
+                      <option value="psychology">Psychology</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="btn btn-inverse "  type="submit"
+                      value="Search" id="btnSearch" name="btnSearch" /> </td>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
+        </form>
+        <br />
+        <table id="searchResult" class="table table-striped">
+          <tbody>
+            <tr>
+              <th>Title</th>
+              <th>Release Date</th>
+              <th>User Rating</th>
+            </tr>
+		<tr>
+			<td>Loosing weight</td>
+			<td>5 July</td>
+			<td>***</td>
+		</tr>
+          </tbody>
+        </table>
+      </div>

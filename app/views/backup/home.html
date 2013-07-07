@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html
+  xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <script src="views/Application/script.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../public/stylesheets/mainStyle.css" type="text/css" />
+    <title>FitNex</title>
+    <meta content="omuyelijah" name="author" />
+    <meta content="A general mockup for website pages" name="description" />
+    <meta content="BlueGriffon wysiwyg editor" name="generator" />
+  </head> 
+  <body>
+    <div id="leftDiv">
+      <div id="logoDiv"> <img src="../public/images/logo.png" style="height:100%;width:100%;"></img> </div>
+      <div id="leftNavDiv">
+        <ul>
+          <li><a class="current" href="home.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="tutorials.html">Tutorials</a></li>         
+          <li><a href="exercises.html">Exercises</a></li>
+          <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+          <li><a href="equipments-for-you.html">Equipments for you!</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="centreDiv">
+      <div id="inspireQuotesDiv"> <img src="../public/images/banner_home.png" style="height:100%;width:100%;"></img></div>
+      <div id="breadCrumbsDiv"><a href="home.html">Home</a></div>
+      <div id="mainContentDiv"> </div>
+    </div>
+    <div id="rightDiv">
+    
+    
+      <div id="loginBMIDiv">	 
+      #{if !signedUser}
+        <form method="post" name="frmLogin" id="frmLogin" action="@{Application.signinform()}">
+          <fieldset> <legend>Login</legend> <span>Username</span>    <input type="text"
+              id="txtUsername" name="txtUsername" /> <br />
+            <span>Password</span>     <input type="password" id="txtPassword" name="txtPassword" /><br />
+            <input type="submit" id="btnSubmit" name="btnSubmit" value="Login" /><br />
+            <span>Don't have an account? <br />
+              <a href="@{Application.signup()}">Join now for free.</a></span> </fieldset>
+        </form>
+         #{/if}
+         #{else}
+    		Welcome, ${signedUser.firstName} <a href="@{Application.signout()}">Sign out</a> 
+		#{/else}
+      </div>
+      
+     
+      <div id="workoutDiv"> Workout Woman</div>
+      <div id="searchDiv">
+        <form method="post" name="frmSearch" id="frmSearch" action="submit">
+          Search   <input type="text" id="txtSearch" name="txtSearch" /> </form>
+      </div>
+      <div class="advertDiv" id="advertDiv1"></div>
+      <div class="advertDiv" id="advertDiv2"></div>
+      <div class="advertDiv" id="advertDiv3"></div>
+    </div>
+    <div id="clearDiv"></div>
+    <br />
+    <div id="footerDiv"> Copyright 2013</div>
+  </body>
+</html>

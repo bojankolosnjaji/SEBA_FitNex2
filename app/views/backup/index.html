@@ -1,0 +1,39 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+#{if signedUser}	
+	Welcome, ${signedUser.fullname}        <a href="@{Application.signout()}">Sign out</a> 
+#{/if}
+
+<ul>
+	<li><a href="#">Home</a></li>
+	<li><a href="#">Login</a></li>
+	<li><a href="#">Tutorials</a></li>
+	<li><a href="#">Exercises</a></li>
+</ul>
+
+#{if !signedUser}
+<br/><br/>	
+<form action="@{Application.signinform()}" method="post">
+	Sign in:
+	<table BORDER="0">
+		<tr>
+			<td>E-mail:</td>
+			<td><input type="text" name="email" value="" size="25"
+				maxlength="50" /></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><input type="text" name="password" value="" size="25"
+				maxlength="50" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Sign in" size="25"
+				maxlength="50" /></td>
+		</tr>
+		
+	</table>
+</form>
+<br/><br/>
+No account yet? <a href="@{Application.signup()}">  Sign up</a>
+#{/if}

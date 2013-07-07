@@ -1,0 +1,59 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+# Home page and other pages
+GET     /                                       Application.index
+GET     /registration.html                      Application.signup
+GET     /bmi_calculator.html                    Application.bmi_calculator
+GET     /bmi_history.html                    BMIHistoryController.bmihistory
+GET     /about_us.html                    	Application.about_us
+GET     /equipments_for_you.html                Application.equipments_for_you
+GET     /contact.html                    	Application.contact
+GET     /workout_plan.html                    	WorkoutPlan.workoutplan
+
+
+# Pages for articles
+GET     /Articles/article.html          	Articles.article
+GET     /Articles/articles.html                 Articles.articles
+GET     /Articles/articles_beginner.html        Articles.articles_beginner
+GET     /Articles/articles_intermediate.html    Articles.articles_intermediate
+GET     /Articles/articles_expert.html          Articles.articles_expert
+
+# Pages for tutorials
+GET     /Tutorials/tutorial.html          	Tutorials.tutorial
+GET     /Tutorials/tutorials.html               Tutorials.tutorials
+GET     /Tutorials/tutorials_beginner.html      Tutorials.tutorials_beginner
+GET     /Tutorials/tutorials_intermediate.html  Tutorials.tutorials_intermediate
+GET     /Tutorials/tutorials_expert.html        Tutorials.tutorials_expert
+
+# Pages for exercises
+GET     /Exercises/exercise.html          	Exercises.exercise
+GET     /Exercises/exercises.html               Exercises.exercises
+GET     /Exercises/exercises_beginner.html      Exercises.exercises_beginner
+GET     /Exercises/exercises_intermediate.html  Exercises.exercises_intermediate
+GET     /Exercises/exercises_expert.html        Exercises.exercises_expert
+
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+*      /                module:secure
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
+
+# Admin part
+*		/admin              module:crud

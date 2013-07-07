@@ -1,0 +1,113 @@
+#{extends 'fitness-template.html' /}
+#{set title:'BMI Calculator' /}
+#{set moreStyles:"
+      
+	#bmiCalc, #interpreteDiv{
+       float:left;
+      }
+
+	#interpreteDiv{
+	margin-left: 5%;
+	}
+
+	#interpreteDiv td, #interpreteDiv th{
+	width: 50%;
+	text-align: center;
+	}
+      
+	#bmiCalc{
+      width: 40%;
+      }
+
+	#bmiCalc form{
+	display: block;
+	width: 100%;
+	height: 100%;
+	}  
+
+	#breadCrumbsDiv{
+	margin-top: -3.5%;
+	}     
+
+	#bmiResult{
+	display: block;
+	margin-left: 40%;
+	}    
+      	
+" /}
+#{set bmiCalculator:"current" /}
+#{set banner:"/public/images/banner_bmi.png" /}
+	<div id="contentnav">
+		<div class="navbar" >
+		  <div class="navbar-inner" >
+			<a class="brand" href="#">Body Mass Index</a>
+			<ul class="nav">
+			  <li class="active"><a href="/bmi_calculator.html">Calculator</a></li>
+			  <li><a href="/bmi_history.html">BMI History</a></li>
+			</ul>
+		  </div>
+		</div>
+		</div>
+      <div id="breadCrumbsDiv">
+		  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/bmi_calculator.html">BMI Calculator</a> <span class="divider">/</span></li>
+		</ul>
+	 </div>
+        <h3>BMI Calculator</h3>
+	<div id="interpreteDiv">
+          <table id="formulaTb" class="table table-striped">
+            <tbody>
+              <tr>
+                <th>Condition</th>
+                <th>BMI</th>
+              </tr>
+              <tr>
+                <td>Under-weight</td>
+                <td>&lt; 19</td>
+              </tr>
+              <tr>
+                <td>Normal<br />
+                </td>
+                <td>19 - 24<br />
+                </td>
+              </tr>
+              <tr>
+                <td>Over-weight<br />
+                </td>
+                <td>24 - 30<br />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div> 
+	<div id="bmiCalc">
+        <form class="form-horizontal">		  
+		  <div class="control-group">
+			<label class="control-label" for="txtWeight">Weight</label>
+			<div class="controls">
+			  <input type="text" id="txtWeight" name="txtWeight" placeholder="kg">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="txtHeight">Height</label>
+			<div class="controls">
+			  <input type="text" id="txtHeight" name="txtHeight" placeholder="metres">
+			</div>
+		  </div>
+		  <div class="control-group" style="margin-left:25px">
+			<div class="controls">
+			  <button type="button" onclick="bmiCalculate()" class="btn btn-inverse btn-large">Calculate</button>
+			</div>
+		  </div>
+		  	  
+	</form>
+		  <form action="@{BMIHistoryController.bmihistoryadd()}">
+	<input id="hiddenBMI" name="hiddenBMI" type="hidden">
+	<input id="hiddenWeight" name="hiddenWeight" type="hidden">
+	<input id="hiddenHeight" name = "hiddenHeight" type="hidden">
+	<span style="margin-left: 3em;"><button type="submit" class="btn btn-inverse btn-large">Add to BMI History</button> </span>
+	 		</form> 
+        </div>                 
+	 <br style="clear:both;"/>
+	<span id="bmiResult"></span>

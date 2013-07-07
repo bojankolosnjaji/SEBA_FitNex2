@@ -1,0 +1,33 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Expert Exercises' /}
+#{set exercises:"current" /}
+#{set banner:"/public/images/banner_exercises.png" /}
+<div>
+		<div class="navbar" id="contentnav">
+		  <div class="navbar-inner" >
+			<a class="brand" href="/Exercises/exercises.html">Exercises</a>
+			<ul class="nav">
+			  <li class="active"><a href="/Exercises/exercises_beginner.html">Beginner</a></li>
+			  <li><a href="/Exercises/exercises_intermediate.html">Intermediate</a></li>
+			  <li><a href="/Exercises/exercises_expert.html">Expert</a></li>
+			</ul>
+		  </div>
+		</div>
+		</div>		
+      <div id="breadCrumbsDiv">	  
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/Exercises/exercises.html">Exercises</a> <span class="divider">/</span></li>
+		</ul>
+	  </div>
+      <div id="content">
+        <h3>Expert Exercises</h3>
+        <ul>
+        	#{list exerciseList, as:'exercise'}
+    			<li><a href = "@{Exercises.loadExercise(exercise.id)}">${exercise.title}</a></li>
+			#{/list}     
+			#{else}
+			No exercises for now
+			#{/else}     
+        </ul>
+      </div>

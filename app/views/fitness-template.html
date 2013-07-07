@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">    
+	<link type="text/css" href="@{'/public/stylesheets/bootstrap.css'}" rel="stylesheet" />
+	<link type="text/css" href="@{'/public/stylesheets/bootstrap-responsive.min.css'}" rel="stylesheet" />
+	<link type="text/css" href="@{'/public/stylesheets/mediaqueries.css'}" rel="stylesheet" />
+	<link rel="stylesheet" href="@{'/public/stylesheets/mainStyle.css'}">
+	<link href='../public/stylesheets/fullcalendar.css' rel='stylesheet' />
+	<link href='../public/stylesheets/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<link rel="stylesheet" href="@{'/public/stylesheets/jquery-ui-1.10.3.custom.min.css'}">
+	
+	<link rel="shortcut icon" type="image/ico" href="@{'/public/images/favicon.ico'}">
+	<style type="text/css">	   
+		#{get 'moreStyles' /}  	   
+	</style>
+	
+	<script src="@{'/public/javascripts/jquery-2.0.3.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>	
+	<script src="@{'/public/javascripts/jquery-ui-1.10.3.custom.min.js'}" type="text/javascript"></script>
+	<script src="@{'/public/javascripts/bootstrap.js'}" type="text/javascript"></script>
+	<link href='../public/stylesheets/fullcalendar.css' rel='stylesheet' />
+	<link href='../public/stylesheets/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<script src='../public/javascripts/jquery-1.9.1.min.js'></script>
+	<script src='../public/javascripts/jquery-ui-1.10.2.custom.min.js'></script>
+	<script src='../public/javascripts/fullcalendar.min.js'></script>
+	<script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
+    	<script src="@{'/public/javascripts/script.js'}" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    
+    	    
+        #{get 'moreScripts' /}
+    </head>
+    <body #{get 'script' /}>
+    <div id="leftDiv">
+      <div id="logoDiv"><img src="@{'/public/images/logo.png'}" /></div>
+      <div id="leftNavDiv">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="#{get 'index' /}"><a href="/">Home</a></li>
+          <li class="#{get 'articles' /}"><a href="/Articles/articles.html">Articles</a></li>  
+          <li class="#{get 'tutorials' /}"><a href="/Tutorials/tutorials.html">Tutorials</a></li>         
+          <li class="#{get 'exercises' /}"><a href="/Exercises/exercises.html">Exercises</a></li>
+          <li class="#{get 'bmiCalculator' /}"><a href="/bmi_calculator.html">BMI Calculator</a></li>
+          <li class="#{get 'bmiHistory' /}"><a href="/bmi_history.html">BMI History</a></li>
+          <li class="#{get 'workoutPlan' /}"><a href="/workout_plan.html">Workout Plan</a></li>
+          <li class="#{get 'equipmentForYou' /}"><a href="/equipments_for_you.html">Equipments for you!</a></li>
+		  <li class="#{get 'aboutUs' /}"><a href="/about_us.html">About Us</a></li>
+          <li class="#{get 'contact' /}"><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div id="ergoTips"></div>
+    </div>
+    <div id="centreDiv">
+      <div id="inspireQuotesDiv">
+		<img src="#{get 'banner' /}" />
+      </div>      
+      <div id="mainContentDiv"> 
+		#{doLayout /}
+	  </div>
+    </div>
+    <div id="rightDiv">
+    <div id="loginBMIDiv">
+	#{if !signedUser}      
+	 <form method="post" name="frmLogin" id="frmLogin" action="@{Application.signinform()}" method="post">
+            <input type="text" id="txtUsername" name="txtUsername" placeholder="User" /> 
+            <input type="password" id="txtPassword" name="txtPassword"placeholder="Password" />
+	    <span id="loginStatusSpan">Incorrect username and/or password</span>
+            <input class="btn btn-inverse" type="submit" id="btnSubmit" name="btnSubmit" value="Login" />
+            <a href="registration.html" class="btn btn-inverse" type="button">Register</a>
+	    <a id="forgotPwdLink">Forgot password?</a>
+			</form>                     
+         #{/if}
+         #{else}
+         <p>Welcome <span>${signedUser.firstName}</span></p>
+   		 <table class="table table-condensed">
+   		 	<caption>Current BMI Information</caption>   		 	
+   		 	<tr>
+   		 		<td class="info">Height</td>
+   		 		<td>${signedUser.height}</td>
+   		 	</tr>
+   		 	<tr>
+   		 		<td class="info">Weight</td>
+   		 		<td>${signedUser.weight}</td>
+   		 	</tr>
+   		 	<tr>
+   		 		<td class="info">BMI Value</td>
+   		 		<td>value</td>
+   		 	</tr>
+   		 </table>
+   		 <a href="@{Application.signout(signedUser.email)}"> Logout</a>
+   		 
+		#{/else}
+	    </div> 
+	     
+      <div class="advertDiv" id="advertDiv1"></div>
+      <div class="advertDiv" id="advertDiv2"></div>
+      <div class="advertDiv" id="advertDiv3"></div>
+      <div class="advertDiv" id="advertDiv4"></div>
+    </div>
+    <div id="clearDiv"></div>
+    <br /><br />
+    <div id="footerDiv">Copyright 2013</div>        
+    </body>
+</html>

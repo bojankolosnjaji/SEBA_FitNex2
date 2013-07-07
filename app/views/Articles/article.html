@@ -1,0 +1,111 @@
+#{extends 'fitness-template.html' /}
+#{set title:'How To Lose Weight in 2 Weeks' /}
+#{set moreStyles:"    
+      
+      #mainContentDiv h5{
+        margin-left: 3%;
+	text-decoration: underline;
+      }
+      
+      #mainContentDiv #textContentDiv{
+        width: 100%;              
+        padding: 2px;
+        margin-left: 2px;
+        margin-right: 2px;
+        font-size: 0.9em;
+      }
+      
+      #content hr{
+      width: 98%;
+      }
+      
+	div textarea{
+	width: 60%;
+	}
+
+	.form-horizontal{
+	margin-left: -27%;
+	display: solid;
+	}
+          
+      #content form legend{
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+	span.media-heading{
+	font-size: 0.85em;
+	font-weight: bold;
+	display: block;
+	}
+
+	span.userid{
+	font-size: 0.8em;
+	display: block;
+	}
+
+	.media-body p{
+	font-size: 0.75em;
+	}
+
+	div.media{
+	margin-left: 5%;
+	}
+"/}
+#{set articles:"current" /}
+#{set banner:"/public/images/banner_articles.png" /}
+<div>
+		<div class="navbar" id="contentnav">
+		  <div class="navbar-inner" >
+			<a class="brand" href="/Articles/articles.html">Articles</a>
+			<ul class="nav">
+			  <li><a href="/Articles/articles_beginner.html">Beginner</a></li>
+			  <li><a href="/Articles/articles_intermediate.html">Intermediate</a></li>
+			  <li><a href="/Articles/articles_expert.html">Expert</a></li>
+			</ul>
+		  </div>
+		</div>
+		</div>		
+      <div id="breadCrumbsDiv">	  
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/Articles/articles.html">Articles</a> <span class="divider">/</span></li>
+		</ul>
+	  </div>
+	<div id="content">
+        <h3>${article.title}</h3>
+		<div id="textContentDiv"> 
+		${article.content}
+		</div>
+          <hr />
+	<form class="form-horizontal" id="formComment" name="frmComment" action="@{ArticleComments.addComment(article.id)}">
+	  <div class="control-group">
+	    <div class="controls">
+	      <input type="text" id="txtTitle" placeholder="Title">
+	    </div>
+	  </div>
+	  <div class="control-group">    
+	    <div class="controls">
+	     <textarea rows="4" placeholder="Comment"></textarea>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" id="btnComment" name="btnComment" class="btn">Add Comment</button>
+	    </div>
+	  </div>
+	</form>          
+          <h5>Comments</h5>	
+          #{list article.comments, as:'comment'}
+		<div class="media">
+		   <div class="media-body">
+			<span class="media-heading">Comment Title</span>
+			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
+			<p>${comment.content}</p>
+		   </div>
+		</div>
+		  #{/list}
+			#{else}
+    		No comments for now
+			#{/else}
+        </div>

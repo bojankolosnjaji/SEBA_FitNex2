@@ -1,0 +1,50 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Who We Are' /}
+#{set moreStyles:"
+
+	#mainContentDiv img{
+	 margin: 1em;
+	}
+
+	#mainContentDiv p{
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	font-size: 0.95em;
+	text-indent: 1em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	text-align: justify;
+	line-height: 1.5em;
+	}
+
+	#mainContentDiv #tired{
+	width: 30%;
+	height: 30%;
+	float: right;
+	clear: right;
+	}
+	
+" /}
+#{set aboutUs:"current" /}
+#{set banner:"/public/images/banner_about.png" /}                
+      <div id="breadCrumbsDiv">
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/about_us.html">About us</a> <span class="divider">/</span></li>
+		</ul> 
+	  </div>
+	<div>  
+	<h3>The FITNEX Company</h3>
+	<p>Our world today is full of gadgets and technological tools to make life easy for us. The internet
+	made accessible from computers, phones a list of other devices is atop of the exciting tools of the
+	mordern age. However, the excitement is beginning to turn to pain as people tend to spend <img src="@{'/public/images/tired.png'}" id="tired" alt="Worked out" title="Worked out" />most of
+	their time and energy using these tools. A good number of these people are in the working class
+	and it is often inevitable for them as they sometimes have to meet deadlines. Youths in schools and a 		few aged persons are also caught in this trap. This does not spell good for any country.</p>
+	<p>FITNEX exist out of a desire to help people lead a balanced and productive life. We provide
+	an environment for people of all ages to learn about taking good care of their health, from a 
+	community of other persons as well as from experts in the health industry and get access to
+	equipments for exercises.</p>
+	<p>Our membership base is growing by the day and we would encourage you to try out our services. You 	are welcome to our site and we encourage you to take advantage of this opportunity. You will be glad you did.</p>
+    </div>
+
+    

@@ -1,0 +1,43 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Equipments For You' /}
+#{set moreStyles:"
+
+	#mainContentDiv{
+	overflow: auto;
+	}
+
+	#equipmentDiv div{
+	width:20%;
+	margin-left: 3%;
+	float: left;
+	height: 20%;	
+	border: solid 1px
+	}
+
+	#equipmentDiv div span{
+	font-size: 0.7em;
+	display: block;
+	margin-left:15%;
+	}
+" /}
+#{set equipmentsForYou:"current" /}
+#{set banner:"/public/images/banner_equipment.png" /}	
+      <div id="breadCrumbsDiv">
+		  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/equipments_for_you.html">Equipments For You</a> <span class="divider">/</span></li>
+		</ul>
+	 </div>
+	<h3>Equipments for Exercises</h3>
+	<div id="equipmentDiv">
+		<div><img src="@{'/public/images/eq1.jpg'}" />
+		<span>Name of equipment</span>
+		</div>
+		<div><img src="@{'/public/images/eq2.jpg'}" />
+		<span>Name of equipment</span>
+		</div>
+		<div><img src="@{'/public/images/eq3.jpg'}" />
+		<span>Name of equipment</span>
+		</div>
+		<br clear="all" />
+	</div>

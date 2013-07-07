@@ -1,0 +1,310 @@
+/** This is for the general structure of our site **/
+
+body{ 
+background-color:#cccccc; 
+font-family: "Arial"; 
+
+width: 1024px ;
+margin-left: auto ;
+margin-right: auto ;
+
+background-image: linear-gradient(right , rgb(124,124,124) 0%, rgb(78,78,78) 54%);
+background-image: -o-linear-gradient(right , rgb(124,124,124) 0%, rgb(78,78,78) 54%);
+background-image: -moz-linear-gradient(right , rgb(124,124,124) 0%, rgb(78,78,78) 54%);
+background-image: -webkit-linear-gradient(right , rgb(124,124,124) 0%, rgb(78,78,78) 54%);
+background-image: -ms-linear-gradient(right , rgb(124,124,124) 0%, rgb(78,78,78) 54%);
+
+background-image: -webkit-gradient(
+	linear,
+	right bottom,
+	left bottom,
+	color-stop(0, rgb(124,124,124)),
+	color-stop(0.54, rgb(78,78,78))
+);
+
+} 
+
+ #logoDiv, #inspireQuotesDiv{
+background-color:red;
+}
+
+/** contents of the left div **/ 
+
+#leftDiv{ 
+height: 600px; 
+width: 20%; 
+float: left; 
+
+
+}
+
+#logoDiv{ 
+height: 25%; 
+
+
+} 
+
+
+#leftNavDiv ul{ 
+list-style-type:none;
+padding-left: 0px; 
+} 
+
+#leftNavDiv ul li{ 
+
+background-color:white; 
+height:20px;
+
+padding: 6px;
+
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);
+
+} 
+
+#leftNavDiv ul li.current{ 
+border: solid 1px white;
+background-color:black; 
+height:20px;
+}
+
+#leftNavDiv ul li a{ 
+text-decoration: none; 
+font-weight: bold; 
+color: red; 
+} 
+
+#leftNavDiv ul li a:hover{ 
+text-decoration: underline; 
+} 
+
+#leftNavDiv li a.current{
+color: black; } 
+
+ul#tutorialLevels, ul#ArticleLevels, ul#exerciseLevels{
+padding-left:4em;
+}
+
+ul#tutorialLevels li, ul#ArticleLevels li, ul#exerciseLevels li{
+font-size: 0.8em;
+
+}
+
+/** -------------------------- **/ 
+
+/** contents of the centre div **/ 
+
+#centreDiv{
+height: 600px; 
+width: 60%; 
+float: left; 
+
+} 
+
+#tabs{
+margin-top:10px;
+}
+
+#inspireQuotesDiv{ 
+height: 25%; 
+
+} 
+
+#inspireQuotesDiv img{ 
+
+} 
+
+
+
+#breadCrumbsDiv{ 
+
+background-color:red; 
+
+height: 4%; 
+color:white;
+padding-top: 7px; 
+padding-left: 4px; 
+
+}
+
+#breadCrumbsDiv a{
+color:white;
+}
+
+#mainContentDiv{ height: 70%; 
+background-color: white; 
+color: #000;
+
+
+
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);
+} 
+
+/** ----------------------- **/ 
+
+/** contents of the right div **/ 
+
+#rightDiv{ 
+height: 625px; 
+width: 20%; 
+float: left; 
+
+
+} 
+
+#loginBMIDiv{ 
+height: 24%; 
+
+background-color:#b5b5b5; 
+border: solid 1px white;
+color:white;
+height:100% 0;
+}
+
+
+#loginBMIDiv form legend{ 
+font-size: 0.9em; 
+} 
+
+#loginBMIDiv form fieldset span,  #loginBMIDiv form input { 
+font-size: 0.8em 
+} 
+
+div #loginBMIDiv form input[type=text]{ 
+width: 50%; 
+} 
+
+div #loginBMIDiv form input[type=password]{
+width: 50%; 
+} 
+
+/** 
+If users login successfully, they see
+a welcome note and their recent BMI values
+at the top right position instead of a 
+login UI.
+**/
+
+#loginBMIDiv span#welcome {
+font-size: 0.75em;
+display: block;
+margin-left: 4px;
+padding-top: 4px;
+}
+
+#loginBMIDiv span#age, 
+#loginBMIDiv span#weight, #loginBMIDiv span#height,
+#loginBMIDiv span#bmi{
+font-size: 0.75em;
+display: block;
+margin-left: 4px;
+margin-top: 7px;
+}
+
+#loginBMIDiv h5{
+text-align: center;
+font-weight: bold;
+height: 7px;
+margin-top: 6px;
+text-decoration: underline;
+}
+
+#workoutDiv{ 
+ 
+height: 5%; 
+background-color: white; 
+padding-top: 7px; 
+padding-left: 4px; 
+
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);
+} 
+
+#searchDiv{ 
+padding-top: 7px;
+padding-left: 3px; 
+height: 5%; 
+background-color: white; 
+
+font-size: 0.9em; 
+
+
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);
+} 
+
+#searchDiv form input{ 
+width: 50%; 
+} 
+
+div .advertDiv{
+height: 19%; 
+margin-top: 1px; 
+background-color: #ddd; } 
+
+/** ------------------------ **/
+
+/** clearing div **/
+#clearDiv{
+clear:both;
+}
+
+/** ------------------------ **/ 
+
+/** footer **/ 
+#footerDiv{
+margin-top: 3px;
+height: 20px;
+font-size: 0.75em;
+text-align: center;
+color: #fff;
+}
+
+/** ------------------------ **/ 
+
+

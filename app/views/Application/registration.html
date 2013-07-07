@@ -1,0 +1,231 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Registration' /}
+#{set moreStyles:"
+	#mainContentDiv{
+	overflow: auto;
+	}  	
+" /}
+#{set banner:"/public/images/banner_home.png" /}      
+#{set script:"onload='populateDOBFields();'" /}          
+      <div id="breadCrumbsDiv">
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/registration.html">Registration</a> <span class="divider">/</span></li>
+		</ul> 
+	  </div>
+        <h3>Join us now.</h3>
+	<form name="frmRegister" id="frmRegister" class="form-horizontal" action="@{Application.signupform()}" method="post">
+	  <div class="control-group">
+	    <label class="control-label" for="txtFirstName">First Name</label>
+	    <div class="controls">
+	      <input type="text" id="txtFirstName" name="txtFirstName" placeholder="First Name">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtLastName">Last Name</label>
+	    <div class="controls">
+	      <input type="text" id="txtLastName" name="txtLastName" placeholder="Last Name">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtUserName">Username</label>
+	    <div class="controls">
+	      <input type="text" id="txtUserName" name="txtUserName" placeholder="Username">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label">Date of Birth (YMD)</label>
+	    <div class="controls">
+		<select id="selYear" name="selYear" class="span2" onchange="populateDay()"></select>
+		<select id="selMonth" name="selMonth" class="span1" onchange="populateDay()">
+			<option value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+		</select>
+		<select id="selDay" name="selDay" class="span1"></select>		
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="txtPassword">Password</label>
+	    <div class="controls">
+	      <input type="password" id="txtPassword" name="txtPassword" placeholder="Password">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtRetPassword">Retype Password</label>
+	    <div class="controls">
+	      <input type="password" id="txtRetPassword" name="txtRetPassword" placeholder="Password">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtWeight">Weight</label>
+	    <div class="controls">
+	      <input type="text" id="txtWeight" name="txtWeight" placeholder="Weight">
+	    </div>
+	  </div>
+	<div class="control-group">
+        <label class="control-label" for="rdGender">Gender</label> &nbsp;&nbsp;&nbsp;&nbsp;
+	<label class="radio inline">
+	  <input type="radio" name="rdGender" id="rdGender" value="male" checked>
+	  Male
+	</label>
+	<label class="radio inline">
+	  <input type="radio" name="rdGender" id="rdGender" value="female">
+	  Female
+	</label>
+	</div>
+	<div class="control-group">
+	    <label class="control-label" for="txtStreet">Street</label>
+	    <div class="controls">
+	      <input type="text" id="txtStreet" name="txtStreet" placeholder="Street">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtNumber">#</label>
+	    <div class="controls">
+	      <input type="text" id="txtNumber" name="txtNumber" placeholder="Number">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtCity">City</label>
+	    <div class="controls">
+	      <input type="text" id="txtCity" name="txtCity" placeholder="City">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtProvince">Province</label>
+	    <div class="controls">
+	      <input type="text" id="txtProvince" name="txtProvince" placeholder="Province">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtCountry">Country</label>
+	    <div class="controls">
+	      <input type="text" id="txtCountry" name="txtCountry" placeholder="Country">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtPhoneNumber">Phone #</label>
+	    <div class="controls">
+	      <input type="text" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="Phone #">
+	    </div>
+	  </div>
+	<div class="control-group">
+	    <label class="control-label" for="txtMobile">Mobile</label>
+	    <div class="controls">
+	      <input type="text" id="txtMobile" name="txtMobile" placeholder="Mobile">
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <label class="checkbox">
+		<input type="checkbox"> I agree to the <a href="#">Terms and Conditions</a>.
+	      </label><br />
+	      <button type="submit" class="btn">Register</button>
+	    </div>
+	  </div>
+	</form>
+     <!--<form name="frmRegister" id="frmRegister" action="@{Application.signupform()}" method="post" >
+				<table>
+					<tbody>
+						<tr>
+							<td class="right">First Name</td>
+							<td><input type="text" name="txtFirstName" id="txtFirstname" />
+							</td>
+						</tr>
+						<tr>
+							<td class="right">Last Name</td>
+							<td><input type="text" name="txtLastName" id="txtLastName" />
+							</td>
+						</tr>
+						<tr>
+							<td class="right">Username (e-mail)</td>
+							<td><input type="text" name="txtEmail" id="txtEmail" />
+							</td>
+						</tr>
+						<tr>
+							<td class="right">Password</td>
+							<td><input type="password" name="txtPassword"
+								id="txtPassword" /></td>
+						</tr>
+						<tr>
+							<td class="right">Retype Password</td>
+							<td><input type="password" name="txtRetPassword"
+								id="txtPassword" /></td>
+						</tr>				 		
+						<tr>
+							<td class="right">Date of birth: (DD/MM/YYYY)</td>
+							<td><input type="text" name="txtDOB" id="txtDOB"
+								maxlength="10" /></td>
+						</tr>
+						<tr>
+							<td class="right">Weight: (kg)</td>
+							<td><input type="text" name="txtWeight" id="txtWeight"
+								maxlength="10" /></td>
+						</tr>
+						<tr>
+							<td class="right">Gender</td>
+							<td><input type="radio" name="rdGender" id="rdGender"
+								value="male" />Male       <input type="radio" name="rdGender"
+								id="rdGender" value="female" />Female</td>
+						</tr>
+						  <tr>
+							<td class="right">Exercise Preference</td>
+							<td><select name="selPref" id="selPref">
+									<option></option>
+							</select></td>
+						</tr>
+						<tr>
+						<td class="right">Street:</td>
+						<td><input type="text" name="txtStreet" value=""
+							maxlength="50" /></td>
+						</tr>
+						<tr>
+							<td class="right">Number:</td>
+							<td><input type="text" name="txtNumber" value="" 
+								maxlength="50" /></td>
+						</tr>
+						<tr>
+							<td class="right">City:</td>
+							<td><input type="text" name="txtCity" value="" 
+								maxlength="50" /></td>
+						</tr>
+						<tr>
+							<td class="right">Province:</td>
+							<td><input type="text" name="txtProvince" value="" 
+								maxlength="50" /></td>
+						</tr>
+						<tr>
+							<td class="right">Country:</td>
+							<td><input type="text" name="txtCountry" value="" 
+								maxlength="50" /></td>
+						</tr>
+						<tr>
+							<td class="right">Phone number:</td>
+							<td><input type="text" name="txtPhoneNumber" value=""
+								maxlength="50" /></td>
+						</tr>
+						<tr>
+							<td class="right">Mobile:</td>
+							<td><input type="text" name="txtMobile" value=""
+								maxlength="50" /></td>
+						</tr>
+						<tr>
+<td colspan="2" style="padding-left: 10em;"><input type="checkbox" name="chkAgree" id="chkAgree" value="checked" /> I agree to the <a href="#">Terms and Conditions</a>.</td>
+						</tr>
+						<tr>
+<td colspan="2" style="padding-left: 10em;"><input type="submit" name="btnSubmit" id="btnSubmit" value="submit" /><input type="reset" value="reset" name="btnReset" id="btnReset" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>-->

@@ -1,0 +1,260 @@
+/** This is for the general structure of our site **/
+
+body{ 
+background-color:#fff; 
+font-family: "Arial"; 
+} 
+
+#logoDiv, #inspireQuotesDiv{
+background-color:red;
+}
+
+/** contents of the left div **/ 
+
+#leftDiv{ 
+width: 20%; 
+float: left; 
+}
+
+#leftNavDiv {
+background-color:#fff;
+}
+
+#leftNavDiv ul li.current{ 
+color: #fff;
+background-color:#444; 
+}
+
+#logoDiv{ 
+height: 25%; 
+} 
+
+#logoDiv img{
+height: 100%;
+width: 100%;
+}
+
+#leftDiv #ergoTips{
+background-image:url('/public/images/ergo-tips.gif');	
+background-repeat: no-repeat;
+margin-top: -6%;
+}
+
+/** -------------------------- **/ 
+
+/** contents of the centre div **/ 
+#centreDiv{
+width: 60%; 
+float: left; 
+} 
+
+#tabs{
+margin-top:10px;
+}
+
+#inspireQuotesDiv{ 
+height: 25%; 
+} 
+
+#inspireQuotesDiv img{ 
+height: 100%;
+width: 100%;
+}
+
+#breadCrumbsDiv{  
+height: 6%; 
+}
+
+#contentnav{
+height:15%;
+width:100%;
+}
+
+#mainContentDiv div#content{
+overflow: auto;
+height: 93%;
+}
+
+#mainContentDiv h3{
+text-align:center;
+font-weight:bold;
+margin-top: 3%;
+}
+
+#mainContentDiv{ 
+height: 70%; 
+background-color: #fff; 
+color: #000;
+margin-top: 0%;
+/*border: 1px solid #e3e3e3;
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);*/
+}
+	
+/** ----------------------- **/ 
+
+
+/** contents of the right div **/ 
+#rightDiv{ 
+width: 20%; 
+float: left; 
+} 
+
+#loginBMIDiv{ 
+height: 24%; 
+background-color:red; 
+color:#fff;
+height:100% 0;
+font-family: "Arial";
+}
+
+#loginBMIDiv form #txtUsername{
+ width: 80%;
+ margin-top: 3%;
+}
+
+#loginBMIDiv form #txtPassword{
+ width: 80%;
+ margin-left: -2%;
+}
+
+#loginBMIDiv form #btnSubmit{
+ width:40%;
+ margin-left: 6%;
+}
+
+#loginBMIDiv form #forgotPwdLink{
+ margin-left: 6%;
+ font-size: 0.85em;
+ color: #fff;
+ display: block;
+}
+
+#loginBMIDiv form #loginStatusSpan{
+ font-size: 0.8em;
+ margin-left: 6%;
+ margin-top: -0.7em;
+ display: block;
+ color: #000;
+}
+
+#loginBMIDiv form a.btn-inverse{
+ width: 30%;
+}
+
+#loginBMIDiv form #passwordHelpLink{
+margin-left:6%;
+color:white;
+}
+
+#loginBMIDiv .table-condensed{
+	color: #444;
+}
+
+#loginBMIDiv .table-condensed caption{
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+#loginBMIDiv .table-condensed td{	
+	font-size: 0.8em;
+}
+
+#loginBMIDiv .table-condensed td.info{
+	font-weight: bold;
+	font-size: 0.85em;
+}
+
+#loginBMIDiv p{
+	color: #000;
+}
+
+#workoutDiv{ 
+height: 5%; 
+background-color: #fff; 
+padding-top: 7px; 
+padding-left: 4px; 
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);
+} 
+
+#searchDiv{ 
+padding-top: 7px;
+padding-left: 3px; 
+height: 5%; 
+background-color: #fff; 
+font-size: 0.9em; 
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(240,240,240) 53%);
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(255,255,255)),
+	color-stop(0.53, rgb(240,240,240))
+);
+} 
+
+#searchDiv form input{ 
+width: 50%; 
+} 
+
+div .advertDiv{
+height: 19%; 
+margin-top: 1px; 
+background-color: #fff;
+background-repeat: no-repeat;
+background-position: center;
+}
+
+div#advertDiv1{
+	background-image:url('/public/images/advert_shoes.png');
+	background-size: 95% 95%;
+}
+div#advertDiv2{
+	background-image:url('/public/images/advert_trunks.png');
+	background-size: 65%;
+}
+div#advertDiv3{
+	background-image:url('/public/images/advert_book.png');
+	background-size: 60%;
+}
+div#advertDiv4{
+	background-image:url('/public/images/seminar.png');
+	background-size: 80%;
+}
+
+/** ------------------------ **/
+
+
+/** footer **/ 
+#footerDiv{
+font-size: 1em;
+text-align: center;
+color: #000;
+padding-top: 0.5em;
+}
+/** ------------------------ **/ 

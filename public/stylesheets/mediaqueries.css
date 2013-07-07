@@ -1,0 +1,29 @@
+@media screen and (max-height: 1200px) {
+/* For 1920px width by 1200px height */
+	#leftDiv, #centreDiv{
+	height: 937.5px;
+	}
+	#rightDiv{
+	height: 976.5625px;
+	}
+	#leftDiv #ergoTips{
+	height: 35%;
+	background-size: 100%;
+	background-position: 50% 50%;
+	}
+}
+
+@media screen and (max-height: 768px) {
+/* For 1024px width by 768px height */
+	#leftDiv, #centreDiv{
+	height: 600px;
+	}
+	#rightDiv{
+	height: 625px;
+	}
+	#leftDiv #ergoTips{
+	height: 25%;
+	background-size: 80%;
+	background-position: 40%;
+	}
+}

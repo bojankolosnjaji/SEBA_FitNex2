@@ -1,0 +1,27 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Contact Information' /}
+#{set moreStyles:"
+
+	span#email, span#mobile{
+	font-weight: bold;
+	font-size: 1em;
+	margin-left: 2em;
+	}
+
+	span.info{
+	font-size: 0.9em;
+	}
+" /}
+#{set contact:"current" /}
+#{set banner:"/public/images/banner_contact.png" /}    
+      <div id="breadCrumbsDiv">
+	  <ul class="breadcrumb"  >
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/contact.html">Contact</a> <span class="divider">/</span></li>
+		</ul>
+	  </div>       
+	<h3>Contact</h3>
+	<br />
+	<span id="email">Email:</span> <span class="info">info@fitnex.com</span>
+	<br />
+	<span id="mobile">Mobile:</span> <span class="info">+4917699028497</span>     

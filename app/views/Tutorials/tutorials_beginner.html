@@ -1,0 +1,34 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Beginner Tutorials' /}
+#{set tutorials:"current" /}
+#{set banner:"/public/images/banner_tutorials.png" /}
+<div>
+		<div class="navbar" id="contentnav">
+		  <div class="navbar-inner" >
+			<a class="brand" href="/Tutorials/tutorials.html">Tutorials</a>
+			<ul class="nav">
+			  <li class="active"><a href="/Tutorials/tutorials_beginner.html">Beginner</a></li>
+			  <li><a href="/Tutorials/tutorials_intermediate.html">Intermediate</a></li>
+			  <li><a href="/Tutorials/tutorials_expert.html">Expert</a></li>
+			</ul>
+		  </div>
+		</div>
+		</div>
+		
+      <div id="breadCrumbsDiv">	  
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/Tutorials/tutorials.html">Tutorials</a> <span class="divider">/</span></li>
+		</ul>
+	  </div> 
+      <div id="content">
+        <h3>Beginner Tutorials</h3>
+        <ul>
+        	#{list tutorialList, as:'tutorial'}
+    			<li><a href = "@{Tutorials.loadTutorial(tutorial.id)}">${tutorial.title}</a></li>
+			#{/list}     
+			#{else}
+			No tutorials for now
+			#{/else}     
+        </ul>       
+      </div>

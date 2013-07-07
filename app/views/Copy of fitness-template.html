@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+	<style type="text/css">	   
+		#{get 'moreStyles' /}  	   
+	</style>
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/mainStyle.css'}">
+        <link rel="shortcut icon" type="image/ico" href="@{'/public/images/favicon.ico'}">
+        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        #{get 'moreScripts' /}
+    </head>
+    <body>
+    #{doLayout /}
+    
+    <div id="rightDiv">
+      #{if !signedUser}    
+       <div id="loginBMIDiv">	 
+      			
+        <form method="post" name="frmLogin" id="frmLogin" action="@{Application.signinform()}">
+          <fieldset> <legend>Login</legend> <span>Username</span> 
+           <input type="text"
+              id="txtUsername" name="txtUsername" /> <br />
+            <span>Password</span>
+            <input type="password" id="txtPassword" name="txtPassword" /><br />
+            <input type="submit" id="btnSubmit" name="btnSubmit" value="Login" /><br />
+            #{if wrongCred}
+      			<span style="color: #d40; font-size: 0.7em" >
+      				Wrong Username or Password!
+      			</span>
+      			#{/if}
+            <span style="font-size: 0.7em;">Don't have an account?
+              <a href="@{Application.signup()}">Register</a></span> </fieldset>
+        </form>
+        </div>
+         #{/if}
+         #{else}
+        <div id="loginBMIDiv"> <span id="welcome">Welcome, ${signedUser.firstName}</span>
+        <h5>Recent BMI Report</h5>
+<!--         <span id="age">Age: </span> 
+			
+        <span id="height">Height: </span> <span id="bmi">BMI: </span> -->
+        
+        <span id="weight">Full Name: ${signedUser.firstName} ${signedUser.lastName}</span>
+        <span id="weight">Weight: ${signedUser.weight}</span>
+           <br />
+          <a href="@{Application.signout()}" style="font-size: 0.75em; margin-left: 0.5em;">Sign out</a>
+          </div>
+    	 
+		#{/else}
+		<div id="workoutDiv"> Workout Woman</div>
+      <div id="searchDiv">
+        <form method="post" name="frmSearch" id="frmSearch" action="submit">
+          Search <input type="text" id="txtSearch" name="txtSearch" /> </form>
+      </div>
+      <div class="advertDiv" id="advertDiv1">
+      <img src="@{'/public/images/advert_shoes.png'}" />
+      </div>
+      <div class="advertDiv" id="advertDiv2">
+      <img src="@{'/public/images/advert-trunks.png'}" />
+      </div>
+      <div class="advertDiv" id="advertDiv3">
+      <img src="@{'/public/images/advert-book.png'}" />
+      </div>
+    </div>
+    <div id="clearDiv"></div>
+    <br />
+    <div id="footerDiv"> Copyright 2013</div>
+        
+    </body>
+</html>

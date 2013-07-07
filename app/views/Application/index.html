@@ -1,0 +1,47 @@
+#{extends 'fitness-template.html' /}
+#{set title:'FITNEX Home' /}
+#{set moreStyles:"
+		#mainContentDiv{
+		height: 80%;
+		margin-top: 0;		
+		}
+
+		#mainContentDiv .hero-unit{
+		height: 30%;
+		}
+
+		#mainContentDiv .hero-unit a.btn-large{
+		color:white;
+		}	
+		
+		#mainContentDiv table{
+		width: 60%;
+		height: 30%;
+		margin-left: 20%;
+		margin-top: -2%;
+		}
+		
+		#mainContentDiv table caption{
+		font-weight: bold;
+		}
+" /}
+#{set index:"current" /}
+#{set banner:"/public/images/banner_home.png" /}
+<div class="hero-unit well">
+		  <h1>Join us today</h1>
+		  <p>   Learn more about your body</p>
+		  <p>
+			<a class="btn btn-inverse btn-large" href="/registration.html">
+			  Register for free
+			</a>
+		  </p>
+</div>
+		<table class="table table-striped">
+			<caption>Hours of Operation</caption>		
+			<tbody>
+				<tr><td>Mondays - Thursday</td><td>7am - 5pm</td></tr>
+				<tr><td>Fridays</td><td>6am - 6pm</td></tr>
+				<tr><td>Saturdays</td><td>5am - 8pm</td></tr>
+				<tr><td>Sundays</td><td>9am - 5pm</td></tr>		
+			</tbody>
+		</table>

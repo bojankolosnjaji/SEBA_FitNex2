@@ -1,0 +1,71 @@
+#{extends 'fitness-template.html' /}
+#{set title:'BMI History' /}
+#{set moreStyles:"
+	
+	#mainContentDiv h3{
+	paddingtop: 10px;
+	textalign: center;
+      }         
+      
+    #mainContentDiv #historyTable{
+  marginleft: 3em;  
+  width: 65%;
+      	}
+
+#historyTable td{ textalign: center; } " /}
+
+<script>
+  $(function() {
+    $('#container').highcharts({
+      chart : {
+        type: 'line'
+      },
+      title : {
+        text : 'BMI history'
+      },
+      xAxis : {
+        type: 'datetime',
+        title : { 
+          text : 'Date' 
+          } 
+      },
+      yAxis : {
+        title : {
+          text : 'BMI'
+        }
+      },
+      series : [ {      
+        data: ${signedUser.getBMIChartData()}
+      }],
+    });
+  });
+</script>
+  <div id="content">
+    <h3>BMI HISTORY</h3>
+    <table id="historyTable" border="1">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Weight (Kg)</th>
+          <th>Height (Cm)</th>
+          <th>BMI Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        #{if signedUser!=null } #{list signedUser.BMIHistoryList,
+        as:'bmiHistory'}
+        <tr>
+          <td>${bmiHistory.date}</td>
+          <td>${bmiHistory.weight}</td>
+          <td>${bmiHistory.height}</td>
+          <td>${bmiHistory.BMIValue}</td>
+        </tr>
+        #{/list} #{/if} #{else} Please sign in first. #{/else}
+      </tbody>
+    </table>
+    <br><br>
+    <div id="container" ></div>
+    
+  </div>
+</div>
+ 
