@@ -37,6 +37,16 @@ public class Tutorials extends Controller {
     	User signedUser=User.convertToUser(Security.session.get("user"));
     	render(tutorialList,signedUser);
     }
+    
+    public static void search(String txtSearch,String selCategory,String selLevel) {
+    	List<Tutorial> tutorialList= models.Tutorial.find("order by date desc").fetch();
+    	
+    	List<Tutorial> tutorialSearchList= models.Tutorial.find("level=? and category=? and UPPER(content) LIKE ?   order by date desc", (TutorialLevel.getValue(selLevel)),TutorialCategory.getValue(selCategory),"%"+txtSearch.toUpperCase()+"%").fetch();
+    	
+    	User signedUser=User.convertToUser(Security.session.get("user"));
+    	renderTemplate("Tutorials/tutorials.html",tutorialList,tutorialSearchList,signedUser);
+        
+    }
 
     public static void tutorials_beginner() {
     	List<Tutorial> tutorialList= models.Tutorial.find("level=? order by date desc", TutorialLevel.BEGINNER).fetch();

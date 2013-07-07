@@ -65,7 +65,7 @@
 			No exercises for now
 			#{/else}     
         </ul>
-        <form name="frmSearch" id="frmSearch" method="post">
+        <form name="frmSearch" id="frmSearch" method="post" action="@{Exercises.search()}">
           <fieldset> <legend>Search for Exercises</legend>
             <table>
               <tbody>
@@ -78,6 +78,15 @@
                       <option value="muscle">Muscle</option>
                       <option value="research">Research</option>
                       <option value="psychology">Psychology</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="selLevel" id="selLevel">
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="expert">Expert</option>
                     </select>
                   </td>
                 </tr>
@@ -97,11 +106,19 @@
               <th>Release Date</th>
               <th>User Rating</th>
             </tr>
-		<tr>
-			<td>Press-ups & Push-ups</td>
-			<td>5 July</td>
-			<td>***</td>
-		</tr>
+            
+        	#{list exerciseSearchList, as:'exercise'}
+    			<tr>
+    			<td><a href = "@{Exercises.loadExercise(exercise.id)}">${exercise.title}</a></td>
+				<td>${exercise.date}</td>
+				<td>${exercise.rank}</td>
+    			</tr>
+			#{/list}     
+			#{else}
+			No exercises for now
+			#{/else}     
+        
+		
           </tbody>
         </table>
       </div>

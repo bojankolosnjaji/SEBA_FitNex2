@@ -1,0 +1,53 @@
+#{extends 'fitness-template.html' /} 
+#{set title:'Exercises' /} 
+#{set moreStyles:" #mainContentDiv{ padding: 1px; } #exerciseDescDiv{ height: 60%; border: 1px solid #f00; } 
+#exerciseDescDiv h3{ margin-top: 1px; text-align: center; font-weight: bold; height: 3%; padding: 0px; }
+#exerciseDescDiv p{ max-height: 87%; padding: 0.5em; font-size: 0.8em;
+line-height: 1.1em; overflow: auto; text-indent: 2.5px; text-align: justify; } 
+#equipmentDiv{ height: 30%; border: 0px solid #0f0; padding:4px; } 
+#equipmentDiv img{ border: solid 1px #000; float: left; height:
+100%; width: 32%; } " /}
+
+
+
+
+		<div id="mainContentDiv" style="margin-top:0%">
+			<h3>${exercise.title}</h3>
+			<div id="textContentDiv">
+				${exercise.content}
+
+				<hr />
+				<form method="post" id="formComment" name="frmComment"
+					action="@{ExerciseComments.addComment(exercise.id)}">
+					<fieldset>
+						<legend>Add a Comment</legend>
+						<table>
+							<tbody>
+								<tr>
+									<td><textarea id="txtComment" name="txtComment"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="submit" value="Add" id="btnSubmit"
+										name="btnSubmit" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+				</form>
+				<h4>Comments</h4>
+				#{list exercise.comments, as:'comment'}
+				<li>${comment.user.firstName} ${comment.user.lastName}:
+					${comment.content}</li> #{/list} #{else} No comments for now #{/else}
+			</div>
+		</div>
+		<hr />
+	<div id="equipmentDiv">
+	<h4>Related Equipments</h4>
+		<a href="#"><img src="@{'/public/images/banner_exercises.png'}"
+			width="5" height="5" /></a> <a href="#"><img
+			src="@{'/public/images/banner_exercises.png'}" width="5" height="5"
+			style="margin-left: 1%;" /></a> <a href="#"><img
+			src="@{'/public/images/banner_exercises.png'}" width="5" height="5"
+			style="margin-left: 1%;" /></a> <br clear="all" />
+	</div>

@@ -28,7 +28,7 @@ public class LogMaker {
 				logDir.mkdir();  
 			  }
 			
-			File todayDir = new File(""+logDir+"\\"+date.getDate() +"_" +date.getMonth()+"_" +date.getYear() );
+			File todayDir = new File(""+logDir+"/"+date.getDate() +"_" +date.getMonth()+"_" +date.getYear() );
 
 			  // if the directory does not exist, create it
 			  if (!todayDir.exists())
@@ -40,7 +40,7 @@ public class LogMaker {
 
 			  }
 
-			File logFile = new File(todayDir + "\\" + logType + "_log.txt");
+			File logFile = new File(todayDir + "/" + logType + "_log.txt");
 
 			try {
 				FileWriter fileWritter = new FileWriter(logFile, true);

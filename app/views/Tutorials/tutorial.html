@@ -1,0 +1,44 @@
+#{extends 'fitness-template.html' /}
+#{set title:'Beginner Tutorials' /}
+#{set moreStyles:" #mainContentDiv{ padding: 2px; } 
+#mainContentDiv
+#summary{ height: 30%; border: 1px solid #f00; margin: 4px; } 
+#summary
+h3{ text-align: center; height: 20%; } 
+#mainContentDiv #content{ height: 65%; border: 0px solid #0f0; margin: 4px; padding: 3px; } " /}
+
+
+		<div id="mainContentDiv" style="margin-top:0%">
+			<h3>${tutorial.title}</h3>
+			<div id="textContentDiv">
+				${tutorial.content}
+				<h4>Steps</h4>
+				<ul>
+					#{list tutorial.steps, as:'step'}
+					<li>${step.title} ${step.stepOrder}: ${step.content}</li> #{/list}
+				</ul>
+				<hr />
+				<form method="post" id="formComment" name="frmComment"
+					action="@{TutorialComments.addComment(tutorial.id)}">
+					<fieldset>
+						<legend>Add a Comment</legend>
+						<table>
+							<tbody>
+								<tr>
+									<td><textarea id="txtComment" name="txtComment"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="submit" value="Add" id="btnSubmit"
+										name="btnSubmit" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+				</form>
+				<h4>Comments</h4>
+				#{list tutorial.comments, as:'comment'}
+				<li>${comment.user.firstName} ${comment.user.lastName}:
+					${comment.content}</li> #{/list} #{else} No comments for now #{/else}
+			</div>
+		</div>

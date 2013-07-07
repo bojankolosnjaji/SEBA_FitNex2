@@ -33,6 +33,17 @@ public class Exercises extends Controller {
     	User signedUser=User.convertToUser(Security.session.get("user"));
     	render(exerciseList,signedUser);
     }
+    
+    
+    public static void search(String txtSearch,String selCategory,String selLevel) {
+    	List<Exercise> exerciseList= models.Exercise.find("order by date desc").fetch();
+    	
+    	List<Exercise> exerciseSearchList= models.Exercise.find("level=? and category=? and UPPER(content) LIKE ?   order by date desc", (ExerciseLevel.getValue(selLevel)),ExerciseCategory.getValue(selCategory),"%"+txtSearch.toUpperCase()+"%").fetch();
+    	
+    	User signedUser=User.convertToUser(Security.session.get("user"));
+    	renderTemplate("Exercises/exercises.html",exerciseList,exerciseSearchList,signedUser);
+        
+    }
 
     public static void exercises_beginner() {
     	List<Exercise> exerciseList= models.Exercise.find("level=? order by date desc", ExerciseLevel.BEGINNER).fetch();
