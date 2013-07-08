@@ -33,10 +33,10 @@ public class WorkoutPlan extends Controller{
 			for (models.WorkoutPlan plan: user.workoutPlans)
 			{
 				strPlan += models.WorkoutPlan.getPlanData(plan);
-				strPlan += ",";
+				
 				
 			}
-			strPlan = strPlan.substring(0, strPlan.length()-2);		
+			//strPlan = strPlan.substring(0, strPlan.length()-2);		
 			
 			renderTemplate("Application/workout_plan.html", strPlan);
 		}

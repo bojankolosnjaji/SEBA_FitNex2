@@ -15,22 +15,22 @@ import play.db.jpa.Model;
 
 @Entity
 public class WorkoutPlan extends Model{
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)	
 	public Exercise exercise;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	public User user;
 
 	public Date startDate;
-	
+
 	public Date endDate;
-	
+
 	@Column
-    @ElementCollection(targetClass=Integer.class)
+	@ElementCollection(targetClass=Integer.class)
 	public List<Integer> chosenDays;
-	
-	
+
+
 	public WorkoutPlan() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -55,31 +55,56 @@ public class WorkoutPlan extends Model{
 		this.endDate = endDate;
 		this.chosenDays = chosenDays;
 	}
-	
-	
+
+
 	public static String getPlanData(WorkoutPlan plan)
 	{
 		String ret="";
 		Date startDate = plan.startDate;
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(startDate);
+		Calendar startCalendar = Calendar.getInstance();
+		startCalendar.setTime(startDate);
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(startDate);
 		String retd="";
 		Calendar endCalendar = Calendar.getInstance();
 		endCalendar.setTime(plan.endDate);
-		while (!calendar.after(endCalendar))
-		{
-		
-		retd = ("{\n title: '" + plan.exercise.title + "',\n");
-		retd += (" start: new Date(" + calendar.get(Calendar.YEAR) + ", " + (calendar.get(Calendar.MONTH)+1) + ", " + calendar.get(Calendar.DATE) + ")\n},");
-		calendar.add(Calendar.DAY_OF_YEAR,7);
-		System.out.println(retd);
-		ret+=retd;
-		}
-		ret.substring(0, ret.length()-2);
+		Calendar startCal = Calendar.getInstance();
+		startCal.setTime(startDate);
+		startCal.set(Calendar.DAY_OF_WEEK, 1);
+		Calendar calendar;
+		do {
+			System.out.println("Day of week:" + startCal.get(Calendar.DAY_OF_WEEK));
+			if (plan.chosenDays.contains(startCal.get(Calendar.DAY_OF_WEEK)))
+			{
+				System.out.println("Contained");
+				calendar = (Calendar) startCal.clone();
+				while (!calendar.after(endCalendar))// iterate through weeks
+				{
+					if (!calendar.before(startCalendar))
+					{
+						retd = ("{\n\t\t\t title: '" + plan.exercise.content + "',\n");
+						retd += ("\t\t\t start: new Date(" + calendar.get(Calendar.YEAR) + ", " + (calendar.get(Calendar.MONTH)) + ", " + (calendar.get(Calendar.DATE)+1) + "),\n");
+						retd += ("\t\t\t end: new Date(" + calendar.get(Calendar.YEAR) + ", " + (calendar.get(Calendar.MONTH)) + ", " + (calendar.get(Calendar.DATE)+1) + "),\n");	
+						retd += ("\t\t\t allDay: true\n");
+						retd += "\t\t\t},";
+						System.out.println(retd);
+						ret+=retd;
+					}
+					calendar.add(Calendar.DAY_OF_YEAR,7);
+
+				}
+				ret.substring(0, ret.length()-2);
+			}
+			else
+			{
+				System.out.println("Not contained");
+			}
+			startCal.add(Calendar.DAY_OF_WEEK, 1);
+		} while (startCal.get(Calendar.DAY_OF_WEEK)!=1);
 		return ret;
 	}
-	
-	
-	
-	
+
+
+
+
 }
