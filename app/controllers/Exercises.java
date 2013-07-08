@@ -21,11 +21,11 @@ public class Exercises extends Controller {
     	if (exerciseList==null || exerciseList.isEmpty())
     	{
     		
-    		new models.Exercise("Exercise1", "Content1", null, new Date(), ExerciseCategory.MUSCLE, ExerciseLevel.BEGINNER, 1,1).save();
-        	new models.Exercise("Exercise2", "Content2", null, new Date(), ExerciseCategory.NUTRITION, ExerciseLevel.EXPERT, 1,1).save();
+    		new models.Exercise("Exercise1", "Content1", null, new Date(), ExerciseCategory.MUSCLE, ExerciseLevel.BEGINNER, 2,3).save();
+        	new models.Exercise("Exercise2", "Content2", null, new Date(), ExerciseCategory.NUTRITION, ExerciseLevel.EXPERT, 3,2).save();
         	new models.Exercise("Exercise3", "Content3", null, new Date(), ExerciseCategory.RESEARCH, ExerciseLevel.BEGINNER,1,1).save();
-        	new models.Exercise("Exercise4", "Content4", null, new Date(), ExerciseCategory.RESEARCH, ExerciseLevel.BEGINNER,1,1).save();
-        	new models.Exercise("Exercise5", "Content5", null, new Date(), ExerciseCategory.MUSCLE, ExerciseLevel.BEGINNER,1,1).save();
+        	new models.Exercise("Exercise4", "Content4", null, new Date(), ExerciseCategory.RESEARCH, ExerciseLevel.BEGINNER,5,1).save();
+        	new models.Exercise("Exercise5", "Content5", null, new Date(), ExerciseCategory.MUSCLE, ExerciseLevel.BEGINNER,4,2).save();
         	exerciseList= models.Exercise.find("order by date desc").fetch();
         	System.out.println(exerciseList.size() + " Exercise inserted");
     	}

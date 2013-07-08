@@ -18,7 +18,7 @@
 <div id="contentnav">
 		<div class="navbar" >
 		  <div class="navbar-inner" >
-			<a class="brand" href="#">Organize Workout</a>
+			<a class="brand" href="#">Organize Workout. Recommended: ${exercise.daysPerWeek} days per week and ${exercise.timePerDay} hours per day</a>
 			<ul class="nav">
 			  <li class="active"><a href="/workout_plan.html">Create a Plan</a></li>
 			  <li><a href="/workout_view.html">View Plans</a></li>
@@ -33,7 +33,7 @@
 		</ul>
 	 </div>
     	<br /><br />
-	<form class="form-horizontal" name="frmPlan" id="frmPlan" action="">
+	<form class="form-horizontal" name="frmPlan" id="frmPlan" action="@{WorkoutPlan.addToWorkoutPlanForm}">
 	  <div class="control-group">
 	    <label class="control-label" for="txtStartDate">Start Date</label>
 	    <div class="controls">
@@ -50,27 +50,28 @@
 	    <span>Select Workout Days</span>
 	    <div class="controls">
 		<label class="checkbox">
-			<input type="checkbox" id="chkMon" name="chkMon" value="monday"> Monday
+			<input type="checkbox" id="day[0]" name="day" value="1"> Monday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="chkTue" name="chkTue" value="tuesday"> Tuesday
+			<input type="checkbox" id="day[1]" name="day" value="2"> Tuesday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="chkWed" name="chkWed" value="wednesday"> Wednesday
+			<input type="checkbox" id="day[2]" name="day" value="3"> Wednesday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="chkThu" name="chkThu" value="thursday"> Thursday
+			<input type="checkbox" id="day" name="day" value="4"> Thursday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="chkFri" name="chkFri" value="friday"> Friday
+			<input type="checkbox" id="day" name="day" value="5"> Friday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="chkSat" name="chkSat" value="saturday"> Saturday
+			<input type="checkbox" id="day" name="day" value="6"> Saturday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="chkSun" name="chkSun" value="sunday"> Sunday
+			<input type="checkbox" id="day" name="day" value="0"> Sunday
                 </label><br />
 	      <button type="submit" class="btn">Add Plan</button>
 	    </div>
+	    <input type="hidden" value="${exercise.id}" name="id" >
 	</form>
     </div>

@@ -52,7 +52,7 @@ public class Application extends Controller {
     	renderTemplate("Application/registration.html");
     } 
     
-    public static void signupform(String txtFirstName, String txtLastName, String txtEmail, String txtPassword, String txtRepPassword, String selDay, String selMonth, String selYear, String txtWeight, String rdGender, String txtStreet, String txtNumber, String txtCity, String txtProvince, String txtCountry, String txtPhoneNumber, String txtMobile, String chkAgree){
+    public static void signupform(String txtFirstName, String txtLastName, String txtUserName, String txtPassword, String txtRepPassword, String selDay, String selMonth, String selYear, String txtWeight, String rdGender, String txtStreet, String txtNumber, String txtCity, String txtProvince, String txtCountry, String txtPhoneNumber, String txtMobile, String chkAgree){
     	Address address = new Address(txtStreet, txtNumber, txtCity, txtProvince, txtCountry);
     	
         Date dateStr;
@@ -68,7 +68,7 @@ public class Application extends Controller {
 			engender = Gender.FEMALE;
 		System.out.println("First name: " + txtFirstName);
 
-		user = new User(txtEmail, txtPassword, txtFirstName, txtLastName, dateStr, engender, Double.parseDouble(txtWeight), address, txtPhoneNumber, txtMobile);
+		user = new User(txtUserName, txtPassword, txtFirstName, txtLastName, dateStr, engender, Double.parseDouble(txtWeight), address, txtPhoneNumber, txtMobile);
 		System.out.println("E-mail: " + user.email);
 		address.save();
 		user.save(); 
