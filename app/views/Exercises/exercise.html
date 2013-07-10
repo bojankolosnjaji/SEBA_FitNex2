@@ -42,13 +42,33 @@ line-height: 1.1em; overflow: auto; text-indent: 2.5px; text-align: justify; }
 			</div>
 		</div>
 		<hr />
-	<a href = "@{WorkoutPlan.addToWorkoutPlan(exercise.id)}"> Add to my workout plan</a>
+	<h3>Rank: ${exercise.rank}</h3>
+	<br />
+	#{if signedUser}
+		<a href = "@{WorkoutPlan.addToWorkoutPlan(exercise.id)}"> Add to my workout plan</a>
+		<br />
+		
+		#{if haveVoted==-1} 
+			<a href = "@{Exercises.rankUp(exercise.id)}"> Plus One</a>
+			<span > Minus One</span>
+		#{/if}
+		#{elseif haveVoted==1}
+			<span > Plus One</span>
+			<a href = "@{Exercises.rankDown(exercise.id)}"> Minus One</a>
+		#{/elseif}
+	    #{else}
+			
+			<a href = "@{Exercises.rankUp(exercise.id)}"> Plus One</a>
+			<a href = "@{Exercises.rankDown(exercise.id)}"> Minus One</a>
+	    #{/else}
+    #{/if}
 	<div id="equipmentDiv">
 	<h4>Related Equipments</h4>
-		<a href="#"><img src="@{'/public/images/banner_exercises.png'}"
-			width="5" height="5" /></a> <a href="#"><img
-			src="@{'/public/images/banner_exercises.png'}" width="5" height="5"
-			style="margin-left: 1%;" /></a> <a href="#"><img
-			src="@{'/public/images/banner_exercises.png'}" width="5" height="5"
-			style="margin-left: 1%;" /></a> <br clear="all" />
+	#{list relEquip, as:'equip'}
+		 <a href="${equip.URl}"><img src="${equip.image}"
+			width="5" height="5" style="margin-left: 1%;"/>${equip.name}</a>
+
+	#{/list} 
+	#{else} No Equipments for now #{/else}
+	<br clear="all" />
 	</div>

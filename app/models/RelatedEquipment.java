@@ -15,10 +15,20 @@ public class RelatedEquipment extends Model{
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)	
-	public Exercise excercise;
+	public Category category;
 	
     public String name;
 	public String image;
 	public String URl;	
+	
+	
+	public RelatedEquipment(Category category, String name,String image,String URl) {
+		super();
+		this.category = category;
+		this.name = name;
+		this.image = image;
+		this.URl = URl;
+		
+	}
 
 }

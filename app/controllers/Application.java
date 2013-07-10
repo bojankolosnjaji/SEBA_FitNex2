@@ -14,7 +14,9 @@ public class Application extends Controller {
 
     public static void index(User signedUser) {
     	
-    	
+//    	Security.session.remove("user");
+//    	Security.session.clear();
+    	//User.deleteAll();
     	
     	System.out.println("INDEX");
     	if (signedUser==null || signedUser.email==null)
@@ -110,6 +112,8 @@ public class Application extends Controller {
 		User signedUser=User.convertToUser(Security.session.get("user"));
     	LogMaker.log("UserActivity", signedUser, "has signed  out");
     	Security.session.put("user", null);
+    	Security.session.remove("user");
+    	Security.session.clear();
     	try {
 			//Secure.logout();
 		} catch (Throwable e) {

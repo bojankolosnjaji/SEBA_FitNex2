@@ -41,4 +41,9 @@ h3{ text-align: center; height: 20%; }
 				<li>${comment.user.firstName} ${comment.user.lastName}:
 					${comment.content}</li> #{/list} #{else} No comments for now #{/else}
 			</div>
+			<h3>Rank: ${tutorial.rank}</h3>
+			#{if signedUser}
+			<a href = "@{Tutorials.rankUp(tutorial.id)}"> Plus One</a>
+			<a href = "@{Tutorials.rankDown(tutorial.id)}"> Minus One</a>
+			#{/if}
 		</div>

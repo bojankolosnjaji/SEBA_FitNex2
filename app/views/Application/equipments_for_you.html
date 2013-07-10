@@ -30,14 +30,15 @@
 	 </div>
 	<h3>Equipments for Exercises</h3>
 	<div id="equipmentDiv">
-		<div><img src="@{'/public/images/eq1.jpg'}" />
-		<span>Name of equipment</span>
-		</div>
-		<div><img src="@{'/public/images/eq2.jpg'}" />
-		<span>Name of equipment</span>
-		</div>
-		<div><img src="@{'/public/images/eq3.jpg'}" />
-		<span>Name of equipment</span>
-		</div>
+	#{list relEquip, as:'equip'}
+				 
+		<a src=${equip.URl}>
+			<div><img src="${equip.image}" />
+				<span>${equip.name}</span>
+			</div>
+		</a>
+		
+	#{/list} 
+	#{else} No Equipments for now #{/else}
 		<br clear="all" />
 	</div>

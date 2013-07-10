@@ -60,13 +60,15 @@
 	 <form method="post" name="frmLogin" id="frmLogin" action="@{Application.signinform()}" method="post">
             <input type="text" id="txtUsername" name="txtUsername" placeholder="User" /> 
             <input type="password" id="txtPassword" name="txtPassword"placeholder="Password" />
-	    <span id="loginStatusSpan">Incorrect username and/or password</span>
+        	#{if wrongCred}  
+	    		<span id="loginStatusSpan">Incorrect username and/or password</span>
+	    	 #{/if}
             <input class="btn btn-inverse" type="submit" id="btnSubmit" name="btnSubmit" value="Login" />
             <a href="registration.html" class="btn btn-inverse" type="button">Register</a>
 	    <a id="forgotPwdLink">Forgot password?</a>
 			</form>                     
-         #{/if}
-         #{else}
+      #{/if}
+      #{else}
          <p>Welcome <span>${signedUser.firstName}</span></p>
    		 <table class="table table-condensed">
    		 	<caption>Current BMI Information</caption>   		 	
@@ -83,7 +85,7 @@
    		 		<td>value</td>
    		 	</tr>
    		 </table>
-   		 <a href="@{Application.signout(signedUser.email)}"> Logout</a>
+   		 <a href="@{Application.signout(signedUser.email)}" style="color: black;"> Logout</a>
    		 
 		#{/else}
 	    </div> 

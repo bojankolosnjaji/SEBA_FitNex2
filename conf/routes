@@ -10,7 +10,7 @@ GET     /registration.html                      Application.signup
 GET     /bmi_calculator.html                    Application.bmi_calculator
 GET     /bmi_history.html                    BMIHistoryController.bmihistory
 GET     /about_us.html                    	Application.about_us
-GET     /equipments_for_you.html                Application.equipments_for_you
+GET     /equipments_for_you.html             EquipmentsForYou.displayEquipments
 GET     /contact.html                    	Application.contact
 GET     /workout_plan.html                    	WorkoutPlan.workoutplan
 

@@ -38,6 +38,61 @@ public class Tutorials extends Controller {
     	render(tutorialList,signedUser);
     }
     
+    
+    public static void rankUp(long id) {
+//		int addResult = UserExercisePreferences
+//				.addExerciseToPreferences(id,1);
+		
+//		if (addResult==1) {
+			Tutorial tutorial = Tutorial.findById(id);
+			tutorial.rank++;
+			tutorial.numberOfVotes++;
+			tutorial.save();
+
+			loadTutorial(id);
+
+//		}else if(addResult==0)
+//		{
+//			Exercise exercise = Exercise.findById(id);
+//			exercise.rank++;
+//			exercise.numberOfVotes--;
+//			exercise.save();
+//			
+//			loadExercise(id);
+//		}
+//		else {
+//			System.out.println("User did not rank up");
+//
+//		}
+
+	}
+
+	public static void rankDown(long id) {
+		
+//		int addResult = UserExercisePreferences
+//				.addExerciseToPreferences(id,-1);
+		
+//		if (addResult==1) {
+		Tutorial tutorial = Tutorial.findById(id);
+		tutorial.rank--;
+		tutorial.numberOfVotes++;
+		tutorial.save();
+
+		loadTutorial(id);
+
+//		} else if(addResult==0)
+//		{
+//			Exercise exercise = Exercise.findById(id);
+//			exercise.rank--;
+//			exercise.numberOfVotes--;
+//			exercise.save();
+//			
+//			loadExercise(id);
+//		}else {
+//			System.out.println("User did not rank down");
+//		}
+	}
+    
     public static void search(String txtSearch,String selCategory,String selLevel) {
     	List<Tutorial> tutorialList= models.Tutorial.find("order by date desc").fetch();
     	

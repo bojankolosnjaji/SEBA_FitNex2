@@ -51,7 +51,7 @@ public class User extends GenericModel implements Serializable{
     @OneToMany(mappedBy="user")
     public List<ExerciseComment> exerciseComments;
     
-    @OneToMany(mappedBy="exercise")
+    @OneToMany(mappedBy="user")
     public List<UserExercisePreference> userExercisePreferences;
     
     @OneToMany(mappedBy="user")
@@ -84,7 +84,7 @@ public class User extends GenericModel implements Serializable{
 		this.articleComments = new ArrayList<ArticleComment>();
 		this.tutorialComments = new ArrayList<TutorialComment>();
 		this.exerciseComments = new ArrayList<ExerciseComment>();
-		this.userExercisePreferences = new ArrayList<UserExercisePreference>();
+		//this.userExercisePreferences = new ArrayList<UserExercisePreference>();
 		this.BMIHistoryList= new ArrayList<BMIHistory>();
 		this.workoutPlans = new ArrayList<WorkoutPlan>();
 		this.address = address;
