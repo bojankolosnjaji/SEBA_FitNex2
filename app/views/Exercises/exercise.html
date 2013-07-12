@@ -144,11 +144,27 @@
 		<div id="divRank">
 		<span id="spanRank">Rank:</span><span> ${exercise.rank}</span>		
 		#{if signedUser}
-			&nbsp;&nbsp;&nbsp;
+			#{if haveVoted==-1} 
+				&nbsp;&nbsp;&nbsp;
+				<a href = "@{Exercises.rankUp(exercise.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+				&nbsp;&nbsp;&nbsp;
+				<a href = "#" class="btn btn-mini" title="Cannot decrease rank"><i class="icon-minus"></i>Rank down</a>
+				#{/if}
+				#{elseif haveVoted==1}
+				&nbsp;&nbsp;&nbsp;
+				<a href = "#" class="btn btn-mini" title="Cannot increase rank"><i class="icon-plus"></i>Rank up</a>
+				
+				&nbsp;&nbsp;&nbsp;
+				<a href = "@{Exercises.rankDown(exercise.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+				#{/elseif}
+	   			#{else}
+					&nbsp;&nbsp;&nbsp;
 			<a href = "@{Exercises.rankUp(exercise.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
-			&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;
 			<a href = "@{Exercises.rankDown(exercise.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+	   			#{/else}
 			&nbsp;&nbsp;&nbsp;
+			
 			<a href="@{WorkoutPlan.addToWorkoutPlan(exercise.id)}" class="btn btn-mini">Add to Workout Plan</a>
 	    #{/if}
 	    </div>       

@@ -74,7 +74,7 @@
             <table>
               <tbody>
                 <tr>
-                  <td><input type="text" name="txtSearch" id="txtSearch" placeholder="Search" /></td>
+                  <td><input type="text" name="txtSearch" id="txtSearch" placeholder="Search" value="${txtSearch}"/></td>
                 </tr>
                 <tr>
                   <td>
@@ -120,7 +120,7 @@
     			</tr>
 			#{/list}     
 			#{else}
-			<!-- No exercises for now-->
+			<tr><td>No tutorials for now</td></tr>
 			#{/else}     
           </tbody>
         </table>

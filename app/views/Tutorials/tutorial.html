@@ -49,6 +49,7 @@
 	width: 60%;
 	}
 
+
 	.form-horizontal{
 	margin-left: -27%;
 	display: solid;	
@@ -144,10 +145,26 @@
 		<div id="divRank">
 		<span id="spanRank">Rank:</span><span> ${tutorial.rank}</span>		
 		#{if signedUser}
-			&nbsp;&nbsp;&nbsp;
+		#{if haveVoted==-1} 
+				&nbsp;&nbsp;&nbsp;
 			<a href = "@{Tutorials.rankUp(tutorial.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
 			&nbsp;&nbsp;&nbsp;
+			<a href = "#" class="btn btn-mini" title="Cannot decrease rank"><i class="icon-minus"></i>Rank down</a>
+				#{/if}
+				#{elseif haveVoted==1}
+				&nbsp;&nbsp;&nbsp;
+				<a href = "#" class="btn btn-mini" title="Cannot increase rank"><i class="icon-plus"></i>Rank up</a>
+				
+				&nbsp;&nbsp;&nbsp;
+				<a href = "@{Tutorials.rankDown(tutorial.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+				#{/elseif}
+	   			#{else}
+					&nbsp;&nbsp;&nbsp;
+			<a href = "@{Tutorials.rankUp(tutorial.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
 			<a href = "@{Tutorials.rankDown(tutorial.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+	   			#{/else}
+			
 	    #{/if}
 	    </div>        
      <h5>Comments</h5> 

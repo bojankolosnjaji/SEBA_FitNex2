@@ -4,15 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 public class Tutorial extends Model{
-	//@Required
+
+	@Required
+	public
 	String title;
 	@Required
 	@Lob
@@ -61,6 +63,18 @@ public class Tutorial extends Model{
 		
 		this.steps = steps;
 	}
+    
+    
+    public int haveUserVoted(long userId)
+    {
+    	UserTutorial uT = models.UserTutorial.find(
+				"tutorialId=? and userId=?", id, userId).first();
+    	
+    	if (uT != null)
+			return uT.interestLevel;
+		else
+			return 0;
+    }
 	
 	
 }

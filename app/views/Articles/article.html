@@ -109,8 +109,26 @@
 		<div id="divRank">
 		<span id="spanRank">Rank:</span><span> ${article.rank}</span>	
 		#{if signedUser}
-			<a href = "@{Articles.rankUp(article.id)}"><img src="..." class="icon-arrow-up" title="+1" alt="Plus 1" /></a>
-			<a href = "@{Articles.rankDown(article.id)}"><img src="..." class="icon-arrow-down" title="-1" alt="Minus 1" /></a>
+			#{if haveVoted==-1} 
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankUp(article.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+					<span class="btn btn-mini" title="Cannot decrease rank"><i class="icon-minus"></i>Rank down</span>
+					
+				#{/if}
+				#{elseif haveVoted==1}
+					&nbsp;&nbsp;&nbsp;
+					<a href = "#" class="btn btn-mini" title="Cannot increase rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankDown(article.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+				#{/elseif}
+	   			#{else}
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankUp(article.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankDown(article.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+	   			#{/else}
+			
 	    #{/if}
 	    </div>        
      <h5>Comments</h5> 
@@ -142,6 +160,8 @@
 	    <div class="controls">
 	      <button type="submit" id="btnComment" name="btnComment" class="btn">Add Comment</button>
 	    </div>
+
 	  </div>	  
 	</form>             	        
-        </div>
+	</div>
+        

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import play.data.validation.Required;
@@ -16,6 +17,7 @@ public class Exercise extends Model{
 	@Required
 	public String title;
 	@Required
+	@Lob
 	public String content;
 
 	public String image;
