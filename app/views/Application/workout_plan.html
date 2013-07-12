@@ -2,10 +2,6 @@
 #{set title:'Workout plan' /}
 #{set moreStyles:"
 
-	#mainContentDiv{
-	overflow: auto;
-	}
-
 	#mainContentDiv h3{
 	text-align: center;
 	font-weight: bold;
@@ -18,11 +14,21 @@
 	height: 30%;
 	width: 32%;
 	}
+	
+	#content{
+	 margin-top: 3%;
+	}
+	
 " /}
-
+#{set workoutPlan:"current" /}
+#{set banner:"/public/images/banner_about.png" /}                
+      <div id="breadCrumbsDiv">
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/workout_plan.html">Workout Plan</a> <span class="divider">/</span></li>
+		</ul> 
+	  </div>
 	<script>
-
-
 	$(document).ready(function() {
 	
 		var date = new Date();
@@ -68,8 +74,6 @@
 		});
 		
 	});
-
-
 </script>
 <div id="content" >
 	<div id="calendar"></div>

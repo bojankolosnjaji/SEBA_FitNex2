@@ -36,15 +36,17 @@
           <li class="#{get 'articles' /}"><a href="/Articles/articles.html">Articles</a></li>  
           <li class="#{get 'tutorials' /}"><a href="/Tutorials/tutorials.html">Tutorials</a></li>         
           <li class="#{get 'exercises' /}"><a href="/Exercises/exercises.html">Exercises</a></li>
-          <li class="#{get 'bmiCalculator' /}"><a href="/bmi_calculator.html">BMI Calculator</a></li>
-          <li class="#{get 'bmiHistory' /}"><a href="/bmi_history.html">BMI History</a></li>
+          <li class="#{get 'bmiCalculator' /}"><a href="/bmi_calculator.html">Body Mass Index</a></li>
+          <!-- <li class="#{get 'bmiHistory' /}"><a href="/bmi_history.html">BMI History</a></li>-->
           <li class="#{get 'workoutPlan' /}"><a href="/workout_plan.html">Workout Plan</a></li>
           <li class="#{get 'equipmentForYou' /}"><a href="/equipments_for_you.html">Equipments for you!</a></li>
 		  <li class="#{get 'aboutUs' /}"><a href="/about_us.html">About Us</a></li>
           <li class="#{get 'contact' /}"><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
-      <div id="ergoTips"></div>
+      <div id="ergoTips">
+      <img src="/public/images/ergo-tips.gif" alt="Ergonomic tips" />
+      </div>
     </div>
     <div id="centreDiv">
       <div id="inspireQuotesDiv">
@@ -64,7 +66,7 @@
 	    		<span id="loginStatusSpan">Incorrect username and/or password</span>
 	    	 #{/if}
             <input class="btn btn-inverse" type="submit" id="btnSubmit" name="btnSubmit" value="Login" />
-            <a href="registration.html" class="btn btn-inverse" type="button">Register</a>
+            <a href="@{Application.signup()}" class="btn btn-inverse" type="button">Register</a>
 	    <a id="forgotPwdLink">Forgot password?</a>
 			</form>                     
       #{/if}
@@ -85,15 +87,22 @@
    		 		<td>value</td>
    		 	</tr>
    		 </table>
-   		 <a href="@{Application.signout(signedUser.email)}" style="color: black;"> Logout</a>
-   		 
+   		 <a href="@{Application.signout(signedUser.email)}" id="logout"> Logout</a>   		 
 		#{/else}
 	    </div> 
 	     
-      <div class="advertDiv" id="advertDiv1"></div>
-      <div class="advertDiv" id="advertDiv2"></div>
-      <div class="advertDiv" id="advertDiv3"></div>
-      <div class="advertDiv" id="advertDiv4"></div>
+      <div class="advertDiv" id="advertDiv1">
+      <img src="/public/images/advert_shoes.png" alt="Shoes for sale at Ebay." />
+      </div>
+      <div class="advertDiv" id="advertDiv2">
+      <img src="/public/images/advert_trunks.png" alt="Trunks for sale." />
+      </div>
+      <div class="advertDiv" id="advertDiv3">
+      <img src="/public/images/advert_book.png" alt="Books for sale." />
+      </div>
+      <div class="advertDiv" id="advertDiv4">
+      <img src="/public/images/seminar.png" alt="Attend this seminar." />
+      </div>
     </div>
     <div id="clearDiv"></div>
     <br /><br />

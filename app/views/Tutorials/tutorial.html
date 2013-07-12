@@ -1,49 +1,184 @@
 #{extends 'fitness-template.html' /}
 #{set title:'Beginner Tutorials' /}
-#{set moreStyles:" #mainContentDiv{ padding: 2px; } 
-#mainContentDiv
-#summary{ height: 30%; border: 1px solid #f00; margin: 4px; } 
-#summary
-h3{ text-align: center; height: 20%; } 
-#mainContentDiv #content{ height: 65%; border: 0px solid #0f0; margin: 4px; padding: 3px; } " /}
+#{set moreStyles:" 
 
+ 	#mainContentDiv h5{
+        margin-left: 3%;
+	    text-decoration: underline;
+      }
+      
+      #mainContentDiv #textContentDiv{
+        width: 100%;        
+        margin-left: 2%;
+        margin-right: 2%;
+        font-size: 0.9em;         
+      }
+      
+      #textContentDiv  #text{
+       width: 70%;
+       border: solid 1px;
+       float: left;
+      }
+      
+      #steps{
+       width: 97%;
+       margin-left: 1.5%;  
+       margin-top: 3%;     
+      }
+      
+      #textContentDiv #image{
+      	margin-left: 2%;
+      	width: 25%;
+      	border: solid 1px;
+      	float: left;
+      }
+      
+      #image img{
+       width: 50%;
+       height: 50%;
+      }
+      
+      hr#separation{
+      width: 94%;
+      height:0.25%;
+      margin-left: 3%;
+      background-color: #999;
+      }
+      
+	div textarea{
+	width: 60%;
+	}
 
-		<div id="mainContentDiv" style="margin-top:0%">
-			<h3>${tutorial.title}</h3>
-			<div id="textContentDiv">
-				${tutorial.content}
-				<h4>Steps</h4>
-				<ul>
-					#{list tutorial.steps, as:'step'}
-					<li>${step.title} ${step.stepOrder}: ${step.content}</li> #{/list}
-				</ul>
-				<hr />
-				<form method="post" id="formComment" name="frmComment"
-					action="@{TutorialComments.addComment(tutorial.id)}">
-					<fieldset>
-						<legend>Add a Comment</legend>
-						<table>
-							<tbody>
-								<tr>
-									<td><textarea id="txtComment" name="txtComment"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td><input type="submit" value="Add" id="btnSubmit"
-										name="btnSubmit" /></td>
-								</tr>
-							</tbody>
-						</table>
-					</fieldset>
-				</form>
-				<h4>Comments</h4>
-				#{list tutorial.comments, as:'comment'}
-				<li>${comment.user.firstName} ${comment.user.lastName}:
-					${comment.content}</li> #{/list} #{else} No comments for now #{/else}
-			</div>
-			<h3>Rank: ${tutorial.rank}</h3>
-			#{if signedUser}
-			<a href = "@{Tutorials.rankUp(tutorial.id)}"> Plus One</a>
-			<a href = "@{Tutorials.rankDown(tutorial.id)}"> Minus One</a>
-			#{/if}
+	.form-horizontal{
+	margin-left: -27%;
+	display: solid;	
+	}           
+
+	span.media-heading{
+	font-size: 0.85em;
+	font-weight: bold;
+	display: block;
+	}
+	
+	span.userid{
+	font-size: 0.8em;
+	display: block;
+	}
+	
+	div#divRank{
+	margin: 2% 0% 0% 3%;	
+	}
+	
+	span#spanRank{
+	display: inline;
+	font-size:0.9em;
+	text-decoration: underline;
+	font-weight:bold;
+	}
+
+	.media-body p{
+	font-size: 0.75em;
+	}
+
+	div.media{
+	margin-left: 5%;
+	}
+
+"/}
+#{set tutorials:"current" /}
+#{set banner:"/public/images/banner_tutorials.png" /}
+<div>
+		<div class="navbar" id="contentnav">
+		  <div class="navbar-inner" >
+			<a class="brand" href="/Tutorials/tutorials.html">Tutorials</a>
+			<ul class="nav">
+			  <li><a href="/Tutorials/tutorials_beginner.html">Beginner</a></li>
+			  <li><a href="/Tutorials/tutorials_intermediate.html">Intermediate</a></li>
+			  <li><a href="/Tutorials/tutorials_expert.html">Expert</a></li>
+			</ul>
+		  </div>
 		</div>
+		</div>		
+      <div id="breadCrumbsDiv">	  
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/Tutorials/tutorials.html">Tutorials</a> <span class="divider">/</span></li>
+		</ul>
+	  </div>
+	  	<div id="content">
+        <h3>${tutorial.title}</h3>
+		<div id="textContentDiv">		
+			${tutorial.content}		
+		</div>
+		<div id="steps">							
+				<ul class="nav nav-tabs" id="tutorialSteps">
+					#{list tutorial.steps, as:'step'}				
+						#{if step.stepOrder==1}
+				<li class="active"><a href="#Step${step.stepOrder}" data-toggle="tab">Step ${step.stepOrder}</a></li>
+						#{/if}
+						#{else}
+				<li><a href="#Step${step.stepOrder}" data-toggle="tab">Step ${step.stepOrder}</a></li>
+						#{/else} 
+					#{/list}								  				 
+				</ul>				
+				<div class="tab-content">
+				  	#{list tutorial.steps, as:'step'}
+				  		#{if step.stepOrder==1}
+				  <div class="tab-pane active" id="Step${step.stepOrder}">
+				  		<div id="text"></div>
+				  		<div id="image"><img src="" /></div>
+				  		<br clear="all" />
+				  </div>
+				  		#{/if}
+				  		#{else}
+				  <div class="tab-pane" id="Step${step.stepOrder}">
+						<div id="text">I have a new hope.</div>
+				  		<div id="image"><img src="" /></div>
+				  		<br clear="all" />
+				  </div>
+				  		#{/else}	
+				    #{/list}		
+				</div>
+						
+		</div>		
+		<div id="divRank">
+		<span id="spanRank">Rank:</span><span> ${tutorial.rank}</span>		
+		#{if signedUser}
+			&nbsp;&nbsp;&nbsp;
+			<a href = "@{Tutorials.rankUp(tutorial.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href = "@{Tutorials.rankDown(tutorial.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+	    #{/if}
+	    </div>        
+     <h5>Comments</h5> 
+       #{list tutorial.comments, as:'comment'}
+		<div class="media">
+		   <div class="media-body">
+			<span class="media-heading">Comment Title</span>
+			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
+			<p>${comment.content}</p>
+		   </div>
+		</div>
+		  #{/list}
+			#{else}
+    		<p id="noContent">No comments for now</p>
+			#{/else}    
+			<hr id="separation" />
+	<form class="form-horizontal" id="frmComment" name="frmComment" action="@{TutorialComments.addComment(tutorial.id)}">	 
+	  <div class="control-group">
+	    <div class="controls">
+	      <input type="text" id="txtTitle" placeholder="Comment Title">
+	    </div>
+	  </div>
+	  <div class="control-group">    
+	    <div class="controls">
+	     <textarea rows="4" placeholder="Comment"></textarea>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" id="btnComment" name="btnComment" class="btn">Add Comment</button>
+	    </div>
+	  </div>	  
+	</form>             	        
+        </div>

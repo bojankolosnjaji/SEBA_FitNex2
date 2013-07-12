@@ -1,6 +1,7 @@
 #{extends 'fitness-template.html' /}
 #{set title:'Equipments For You' /}
 #{set moreStyles:"
+	
 	#breadCrumbsDiv{
 	margin-top: -3.5%;
 	} 
@@ -10,18 +11,24 @@
 	margin-left: 16%;
 	}
 	
+	#mainContentDiv p{
+	font-size: 0.85em;
+	margin-left: 2%;
+	}
+	
+	#mainContentDiv form *{
+	font-size: 0.95em;
+	}
+	
 " /}
 #{set workoutPlan:"current" /}
 #{set banner:"/public/images/banner_exercises.png" /}
-
-
 <div id="contentnav">
 		<div class="navbar" >
-		  <div class="navbar-inner" >
-			<a class="brand" href="#">Organize Workout. Recommended: ${exercise.daysPerWeek} days per week and ${exercise.timePerDay} hours per day</a>
+		  <div class="navbar-inner" >			
 			<ul class="nav">
 			  <li class="active"><a href="/workout_plan.html">Create a Plan</a></li>
-			  <li><a href="/workout_view.html">View Plans</a></li>
+			  <li><a href="/workout_plan.html">View Plans</a></li>
 			</ul>
 		  </div>
 		</div>
@@ -32,7 +39,8 @@
 		  <li><a href="/workout_plan.html">Workout Plan</a> <span class="divider">/</span></li>
 		</ul>
 	 </div>
-    	<br /><br />
+    	<br />
+    	<p>Organize Workout. Recommended: ${exercise.daysPerWeek} days per week and ${exercise.timePerDay} hours per day.</p>
 	<form class="form-horizontal" name="frmPlan" id="frmPlan" action="@{WorkoutPlan.addToWorkoutPlanForm}">
 	  <div class="control-group">
 	    <label class="control-label" for="txtStartDate">Start Date</label>
@@ -59,16 +67,16 @@
 			<input type="checkbox" id="day[2]" name="day" value="3"> Wednesday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day" name="day" value="4"> Thursday
+			<input type="checkbox" id="day[3]" name="day" value="4"> Thursday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day" name="day" value="5"> Friday
+			<input type="checkbox" id="day[4]" name="day" value="5"> Friday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day" name="day" value="6"> Saturday
+			<input type="checkbox" id="day[5]" name="day" value="6"> Saturday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day" name="day" value="0"> Sunday
+			<input type="checkbox" id="day[6]" name="day" value="0"> Sunday
                 </label><br />
 	      <button type="submit" class="btn">Add Plan</button>
 	    </div>

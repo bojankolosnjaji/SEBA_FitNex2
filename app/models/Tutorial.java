@@ -5,15 +5,17 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Lob;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 public class Tutorial extends Model{
-	@Required
+	//@Required
 	String title;
 	@Required
+	@Lob
 	public String content;
 
 	public String image;
