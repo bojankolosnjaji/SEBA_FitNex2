@@ -108,4 +108,22 @@
 			#{else}
     		No comments for now
 			#{/else}
+			
+			<h3>Rank: ${article.rank}</h3>
+			#{if signedUser}
+			<br />
+				#{if haveVoted==-1} 
+				<a href = "@{Articles.rankUp(article.id)}"> Plus One</a>
+				<span > Minus One</span>
+				#{/if}
+				#{elseif haveVoted==1}
+				<span > Plus One</span>
+				<a href = "@{Articles.rankDown(article.id)}"> Minus One</a>
+				#{/elseif}
+	   			#{else}
+					<a href = "@{Articles.rankUp(article.id)}"> Plus One</a>
+					<a href = "@{Articles.rankDown(article.id)}"> Minus One</a>
+	   			#{/else}
+			#{/if}
         </div>
+        

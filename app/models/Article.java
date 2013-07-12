@@ -16,6 +16,7 @@ import play.db.jpa.Model;
 @Entity
 public class Article extends Model{
 	@Required
+	public
 	String title;
 	@Required
 	@Lob
@@ -52,7 +53,16 @@ public class Article extends Model{
 		this.level = level;		 
 	}
     
-    
+	public int haveUserVoted(long userId)
+    {
+    	UserArticle uA = models.UserArticle.find(
+				"articleId=? and userId=?", id, userId).first();
+    	
+    	if (uA != null)
+			return uA.interestLevel;
+		else
+			return 0;
+    }
 	
 	
 }

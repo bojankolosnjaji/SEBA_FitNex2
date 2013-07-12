@@ -42,8 +42,21 @@ h3{ text-align: center; height: 20%; }
 					${comment.content}</li> #{/list} #{else} No comments for now #{/else}
 			</div>
 			<h3>Rank: ${tutorial.rank}</h3>
+			
 			#{if signedUser}
-			<a href = "@{Tutorials.rankUp(tutorial.id)}"> Plus One</a>
-			<a href = "@{Tutorials.rankDown(tutorial.id)}"> Minus One</a>
-			#{/if}
+				<br />
+		
+				#{if haveVoted==-1} 
+				<a href = "@{Tutorials.rankUp(tutorial.id)}"> Plus One</a>
+				<span > Minus One</span>
+				#{/if}
+				#{elseif haveVoted==1}
+				<span > Plus One</span>
+				<a href = "@{Tutorials.rankDown(tutorial.id)}"> Minus One</a>
+				#{/elseif}
+	   			#{else}
+					<a href = "@{Tutorials.rankUp(tutorial.id)}"> Plus One</a>
+					<a href = "@{Tutorials.rankDown(tutorial.id)}"> Minus One</a>
+	   			#{/else}
+    		#{/if}
 		</div>
