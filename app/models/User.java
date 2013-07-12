@@ -40,6 +40,7 @@ public class User extends GenericModel implements Serializable{
     public Gender gender;
     public double weight;
     public double height;
+    public double bmiValue;
     public Date joinDate;
     
     @OneToMany(mappedBy="user")
@@ -76,7 +77,7 @@ public class User extends GenericModel implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	public User(String email, String password, String firstName,
-			String lastName, Date dateOfBirth, Gender gender, double weight,
+			String lastName, Date dateOfBirth, Gender gender, double height, double weight,
 			Address address, String phone, String mobile) {
 		super();
 		this.email = email;
@@ -85,6 +86,7 @@ public class User extends GenericModel implements Serializable{
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
+		this.height = height;
 		this.weight = weight;
 		this.joinDate = new Date();
 		this.articleComments = new ArrayList<ArticleComment>();
@@ -96,8 +98,15 @@ public class User extends GenericModel implements Serializable{
 		this.address = address;
 		this.phone = phone;
 		this.mobile = mobile;	
+		this.setBMIValue();
 		
 		System.out.println(email  + "" + password + " " + firstName + " " + lastName + "" + dateOfBirth + " " + gender + " "  + weight + joinDate);
+		
+	}
+	
+	public void setBMIValue()
+	{
+		this.bmiValue = weight/(height*height);
 		
 	}
 	

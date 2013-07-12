@@ -37,7 +37,8 @@ public class BMIHistory extends Model implements Serializable{
 		this.date = date;
 		this.weight = weight;
 		this.height = height;
-		BMIValue = bMIValue;
+		BMIValue = weight/(height*height);
+
 	}
 	
 	public static String getBMIHistoryChartData(User user)

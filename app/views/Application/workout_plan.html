@@ -35,7 +35,7 @@
 		var d = date.getDate();
 		var m = date.getMonth();
 		var y = date.getFullYear();
-		
+		var id;
 		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -44,30 +44,37 @@
 			},
 			selectable: true,
 			selectHelper: true,
-			select: function(start, end, allDay) {
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
+			eventClick: function(calEvent, jsEvent, view) {
+				evid = calEvent.id;
+				alert(evid);
+				
+			    $("#cal_event").dialog({
+			    	
+	                title: calEvent.title,
+	                buttons: {
+	            	    'Delete': function() {
+	            	    	
+	            	    	window.location = "http://localhost:9000/workoutplan/removeworkoutplan?id=" + evid;	            	    	
+
+	            	    		            	       
+	            	       $(this).dialog('close');
+	            	    },
+	            	    'Edit': function() {	            	    
+	            	    	window.location = "http://localhost:9000/workoutplan/editworkoutplan?id=" + evid;	            	    	
+	            	    	
+	            	       $(this).dialog('close');
+	            	    }, 
+	            	    'Cancel': function() {
+		            	       $(this).dialog('close');
+		            	    }
+	            	  }
+	            });$("#cal_event").HTML(calEvent.description);
+				
+				
 			},
 			editable: true,
 			events: [
-			    {
-			    	title: 'tryout',
-			    	start: new Date(2013,6,9),
-			    	end: new Date(2013,6,10),
-			    	allDay: true
-			    	
-			    },
+			  
 			    ${strPlan}
 			    
 			    ]
@@ -77,4 +84,5 @@
 </script>
 <div id="content" >
 	<div id="calendar"></div>
+	<div id="cal_event"></div>
 </div>
