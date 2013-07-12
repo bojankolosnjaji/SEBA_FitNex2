@@ -19,9 +19,11 @@
         font-size:0.8em;
       }     
       
-      #mainContentDiv form legend{
+      #mainContentDiv form fieldset legend{
         font-size:0.85em;
-          font-weight:bold;
+        font-weight:bold;
+        margin-left: 2%;
+        width: 95%;
       }
           
       #mainContentDiv h4{
@@ -64,22 +66,33 @@
     			<li><a href = "@{Articles.loadArticle(article.id)}">${article.title}</a></li>
 			#{/list}     
 			#{else}
-			No articles for mow
+			No articles for now
 			#{/else}     
         </ul>
-        <form name="frmSearch" id="frmSearch" method="post">
+        <form name="frmSearch" id="frmSearch" method="post" action="@{Articles.search()}"> 
           <fieldset> <legend>Search for Articles</legend>
             <table>
               <tbody>
                 <tr>
-                  <td><input type="text" name="txtSearch" id="txtSearch" placeholder="Search" /></td>
+                  <td><input type="text" name="txtSearch" id="txtSearch" placeholder="Search" value="${txtSearch}"/></td>
                 </tr>
                 <tr>
                   <td>
                     <select name="selCategory" id="selCategory">
+                      <option value="none">Choose...</option>
                       <option value="muscle">Muscle</option>
                       <option value="research">Research</option>
-                      <option value="psychology">Psychology</option>
+                      <option value="nutrition">Nutrition</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="selLevel" id="selLevel">
+                      <option value="none">Choose...</option>
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="expert">Expert</option>
                     </select>
                   </td>
                 </tr>
@@ -99,11 +112,21 @@
               <th>Release Date</th>
               <th>User Rating</th>
             </tr>
-		<tr>
-			<td>Loosing weight</td>
-			<td>5 July</td>
-			<td>***</td>
-		</tr>
+		#{list articleSearchList, as:'article'}
+    			<tr>
+    			<td><a href = "@{Articles.loadArticle(article.id)}">${article.title}</a></td>
+				<td>${article.date}</td>
+				<td>${article.rank}</td>
+    			</tr>
+			#{/list}     
+			#{else}
+			<tr><td>No articles for now</td></tr>
+			#{/else}     
           </tbody>
         </table>
 	</div>
+	
+	 <script type="text/javascript">
+		 document.getElementById("selLevel").selectedIndex=${selLevelInt};
+		 document.getElementById("selCategory").selectedIndex=${selCategoryInt};
+      </script>

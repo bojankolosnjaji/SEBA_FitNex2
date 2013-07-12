@@ -3,16 +3,44 @@
 #{set moreStyles:"
 	
 	#mainContentDiv h3{
-	paddingtop: 10px;
-	textalign: center;
+		paddingtop: 10px;
+		textalign: center;
       }         
       
     #mainContentDiv #historyTable{
-  marginleft: 3em;  
-  width: 65%;
+	  margin-left: 8%;  
+	  width: 89%;
       	}
 
-#historyTable td{ textalign: center; } " /}
+	#historyTable td{ 
+	textalign: center; 
+	} 
+	
+	#breadCrumbsDiv{
+		margin-top: -3.5%;
+	}    
+
+" /}
+#{set bmiCalculator:"current" /}
+#{set banner:"/public/images/banner_bmi.png" /}
+	<div id="contentnav">
+		<div class="navbar" >
+		  <div class="navbar-inner" >
+			<a class="brand" href="#">Body Mass Index</a>
+			<ul class="nav">
+			  <li><a href="/bmi_calculator.html">Calculator</a></li>
+			  <li class="active"><a href="/bmi_history.html">BMI History</a></li>
+			</ul>
+		  </div>
+		</div>
+		</div>
+      <div id="breadCrumbsDiv">
+		  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/bmi_calculator.html">BMI Calculator</a> <span class="divider">/</span></li>
+		</ul>
+	 </div>
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 		 
@@ -23,7 +51,7 @@
         type: 'line'
       },
       title : {
-        text : 'BMI history'
+        text : 'BMI history Graph'
       },
       xAxis : {
         type: 'datetime',
@@ -44,7 +72,7 @@
 </script>
   <div id="content">
     <h3>BMI HISTORY</h3>
-    <table id="historyTable" border="1">
+    <table id="historyTable" class="table">
       <thead>
         <tr>
           <th>Date</th>
@@ -65,9 +93,8 @@
         #{/list} #{/if} #{else} Please sign in first. #{/else}
       </tbody>
     </table>
-    <br><br>
-    <div id="container" ></div>
-    
+    <br  /><br  />
+    <div id="container" ></div>    
   </div>
 </div>
  

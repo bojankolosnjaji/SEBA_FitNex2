@@ -4,19 +4,39 @@
       
       #mainContentDiv h5{
         margin-left: 3%;
-	text-decoration: underline;
+	    text-decoration: underline;
       }
       
       #mainContentDiv #textContentDiv{
-        width: 100%;              
-        padding: 2px;
-        margin-left: 2px;
-        margin-right: 2px;
-        font-size: 0.9em;
+        width: 100%;        
+        margin-left: 2%;
+        margin-right: 2%;
+        font-size: 0.9em;        
       }
       
-      #content hr{
-      width: 98%;
+      #textContentDiv  #text{
+       width: 70%;
+       border: solid 1px;
+       float: left;
+      }
+      
+      #textContentDiv #image{
+      	margin-left: 2%;
+      	width: 25%;
+      	border: solid 1px;
+      	float: left;
+      }
+      
+      #image img{
+       width: 50%;
+       height: 50%;
+      }
+      
+      hr#separation{
+      width: 94%;
+      height:0.25%;
+      margin-left: 3%;
+      background-color: #999;
       }
       
 	div textarea{
@@ -25,23 +45,29 @@
 
 	.form-horizontal{
 	margin-left: -27%;
-	display: solid;
-	}
-          
-      #content form legend{
-        font-size: 1em;
-        font-weight: bold;
-      }
+	display: solid;	
+	}           
 
 	span.media-heading{
 	font-size: 0.85em;
 	font-weight: bold;
 	display: block;
 	}
-
+	
 	span.userid{
 	font-size: 0.8em;
 	display: block;
+	}
+	
+	div#divRank{
+	margin: 2% 0% 0% 3%;	
+	}
+	
+	span#spanRank{
+	display: inline;
+	font-size:0.9em;
+	text-decoration: underline;
+	font-weight:bold;
 	}
 
 	.media-body p{
@@ -51,6 +77,7 @@
 	div.media{
 	margin-left: 5%;
 	}
+	
 "/}
 #{set articles:"current" /}
 #{set banner:"/public/images/banner_articles.png" /}
@@ -74,14 +101,54 @@
 	  </div>
 	<div id="content">
         <h3>${article.title}</h3>
-		<div id="textContentDiv"> 
-		${article.content}
+		<div id="textContentDiv">		
+			<div id="text">${article.content}</div>
+			<div id="image"><img src="" /></div>
+			<br clear="all" />
+		</div>		
+		<div id="divRank">
+		<span id="spanRank">Rank:</span><span> ${article.rank}</span>	
+		#{if signedUser}
+			#{if haveVoted==-1} 
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankUp(article.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+					<span class="btn btn-mini" title="Cannot decrease rank"><i class="icon-minus"></i>Rank down</span>
+					
+				#{/if}
+				#{elseif haveVoted==1}
+					&nbsp;&nbsp;&nbsp;
+					<a href = "#" class="btn btn-mini" title="Cannot increase rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankDown(article.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+				#{/elseif}
+	   			#{else}
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankUp(article.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href = "@{Articles.rankDown(article.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+	   			#{/else}
+			
+	    #{/if}
+	    </div>        
+     <h5>Comments</h5> 
+       #{list article.comments, as:'comment'}
+		<div class="media">
+		   <div class="media-body">
+			<span class="media-heading">Comment Title</span>
+			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
+			<p>${comment.content}</p>
+		   </div>
 		</div>
-          <hr />
-	<form class="form-horizontal" id="formComment" name="frmComment" action="@{ArticleComments.addComment(article.id)}">
+		  #{/list}
+			#{else}
+    		<p id="noContent">No comments for now</p>
+			#{/else}    
+			<hr id="separation" />
+	<form class="form-horizontal" id="frmComment" name="frmComment" action="@{ArticleComments.addComment(article.id)}">	 
 	  <div class="control-group">
 	    <div class="controls">
-	      <input type="text" id="txtTitle" placeholder="Title">
+	      <input type="text" id="txtTitle" placeholder="Comment Title">
 	    </div>
 	  </div>
 	  <div class="control-group">    
@@ -93,19 +160,8 @@
 	    <div class="controls">
 	      <button type="submit" id="btnComment" name="btnComment" class="btn">Add Comment</button>
 	    </div>
-	  </div>
-	</form>          
-          <h5>Comments</h5>	
-          #{list article.comments, as:'comment'}
-		<div class="media">
-		   <div class="media-body">
-			<span class="media-heading">Comment Title</span>
-			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
-			<p>${comment.content}</p>
-		   </div>
-		</div>
-		  #{/list}
-			#{else}
-    		No comments for now
-			#{/else}
-        </div>
+
+	  </div>	  
+	</form>             	        
+	</div>
+        

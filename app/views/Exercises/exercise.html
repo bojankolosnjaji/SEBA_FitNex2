@@ -1,79 +1,203 @@
 #{extends 'fitness-template.html' /} 
 #{set title:'Exercises' /} 
-#{set moreStyles:" #mainContentDiv{ padding: 1px; } #exerciseDescDiv{ height: 60%; border: 1px solid #f00; } 
-#exerciseDescDiv h3{ margin-top: 1px; text-align: center; font-weight: bold; height: 3%; padding: 0px; }
-#exerciseDescDiv p{ max-height: 87%; padding: 0.5em; font-size: 0.8em;
-line-height: 1.1em; overflow: auto; text-indent: 2.5px; text-align: justify; } 
-#equipmentDiv{ height: 30%; border: 0px solid #0f0; padding:4px; } 
-#equipmentDiv img{ border: solid 1px #000; float: left; height:
-100%; width: 32%; } " /}
+#{set moreStyles:" 
 
+#mainContentDiv h5{
+        margin-left: 3%;
+	    text-decoration: underline;
+      }
+      
+      #mainContentDiv #textContentDiv{
+        width: 100%;        
+        margin-left: 2%;
+        margin-right: 2%;
+        font-size: 0.9em;         
+      }
+      
+      #textContentDiv  #text{
+       width: 70%;
+       /*border: solid 1px;*/
+       float: left;
+      }
+      
+      #steps{
+       width: 97%;
+       margin-left: 1.5%;  
+       margin-top: 3%;     
+      }
+      
+      #textContentDiv #image{
+      	margin-left: 2%;
+      	width: 25%;
+      	/*border: solid 1px;*/
+      	float: left;
+      }
+      
+      #image img{
+       width: 50%;
+       height: 50%;
+      }
+      
+      hr#separation{
+      width: 94%;
+      height:0.25%;
+      margin-left: 3%;
+      background-color: #999;
+      }
+      
+	div textarea{
+	width: 60%;
+	}
 
+	.form-horizontal{
+	margin-left: -27%;
+	display: solid;	
+	}           
 
+	span.media-heading{
+	font-size: 0.85em;
+	font-weight: bold;
+	display: block;
+	}
+	
+	span.userid{
+	font-size: 0.8em;
+	display: block;
+	}
+	
+	div#divRank{
+	margin: 2% 0% 0% 3%;	
+	}
+	
+	span#spanRank{
+	display: inline;
+	font-size:0.9em;
+	text-decoration: underline;
+	font-weight:bold;
+	}
 
-		<div id="mainContentDiv" style="margin-top:0%">
-			<h3>${exercise.title}</h3>
-			<div id="textContentDiv">
-				${exercise.content}
-				
-				<hr />
-				<form method="post" id="formComment" name="frmComment"
-					action="@{ExerciseComments.addComment(exercise.id)}">
-					<fieldset>
-						<legend>Add a Comment</legend>
-						<table>
-							<tbody>
-								<tr>
-									<td><textarea id="txtComment" name="txtComment"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td><input type="submit" value="Add" id="btnSubmit"
-										name="btnSubmit" /></td>
-								</tr>
-							</tbody>
-						</table>
-					</fieldset>
-				</form>
-				<h4>Comments</h4>
-				#{list exercise.comments, as:'comment'}
-				<li>${comment.user.firstName} ${comment.user.lastName}:
-					${comment.content}</li> #{/list} #{else} No comments for now #{/else}
-			</div>
+	.media-body p{
+	font-size: 0.75em;
+	}
+
+	div.media{
+	margin-left: 5%;
+	}
+	
+	#equipmentDiv div{
+	width:20%;
+	margin-left: 3%;
+	float: left;
+	height: 20%;	
+	border: solid 1px
+	}
+	
+	#equipmentDiv div span{
+	font-size: 0.7em;
+	display: block;
+	margin-left:15%;
+	}
+	
+" /}
+#{set exercises:"current" /}
+#{set banner:"/public/images/banner_exercises.png" /}
+<div>
+		<div class="navbar" id="contentnav">
+		  <div class="navbar-inner" >
+			<a class="brand" href="/Exercises/exercises.html">Exercises</a>
+			<ul class="nav">
+			  <li><a href="/Exercises/exercises_beginner.html">Beginner</a></li>
+			  <li><a href="/Exercises/exercises_intermediate.html">Intermediate</a></li>
+			  <li><a href="/Exercises/exercises_expert.html">Expert</a></li>
+			</ul>
+		  </div>
 		</div>
-		<hr />
-	<h3>Rank: ${exercise.rank}</h3>
-	<ul>
-	#{list relCat, as:'category'}
-				<li>${category.name}</li> 
-	#{/list} #{else} No categories #{/else}
-	</ul>
-	<br />
-	#{if signedUser}
-		<a href = "@{WorkoutPlan.addToWorkoutPlan(exercise.id)}"> Add to my workout plan</a>
-		<br />
-		
-		#{if haveVoted==-1} 
-			<a href = "@{Exercises.rankUp(exercise.id)}"> Plus One</a>
-			<span > Minus One</span>
-		#{/if}
-		#{elseif haveVoted==1}
-			<span > Plus One</span>
-			<a href = "@{Exercises.rankDown(exercise.id)}"> Minus One</a>
-		#{/elseif}
-	    #{else}
+		</div>		
+      <div id="breadCrumbsDiv">	  
+	  <ul class="breadcrumb">
+		  <li><a href="/">Home</a> <span class="divider">/</span></li>
+		  <li><a href="/Exercises/exercises.html">Exercises</a> <span class="divider">/</span></li>
+		</ul>
+	  </div>
+	  	<div id="content">
+        <h3>${exercise.title}</h3>
+		<div id="textContentDiv">						
+			<div id="text">${exercise.content}</div>
+			<div id="image"><img src=${exercise.image} /></div>
+			<br clear="all" />	
+		</div>
+		<hr id="separation" />
+		<div id="equipmentDiv">
+		#{list relEquip, as:'equip'}
+					 
+			<a src=${equip.URl}>
+				<div><img src="${equip.image}" />
+					<span>${equip.name}</span>
+				</div>
+			</a>
 			
-			<a href = "@{Exercises.rankUp(exercise.id)}"> Plus One</a>
-			<a href = "@{Exercises.rankDown(exercise.id)}"> Minus One</a>
-	    #{/else}
-    #{/if}
-	<div id="equipmentDiv">
-	<h4>Related Equipments</h4>
-	#{list relEquip, as:'equip'}
-		 <a href="${equip.URl}"><img src="${equip.image}"
-			width="5" height="5" style="margin-left: 1%;"/>${equip.name}</a>
-
-	#{/list} 
-	#{else} No Equipments for now #{/else}
-	<br clear="all" />
-	</div>
+		#{/list} 
+		#{else} No Equipments for now #{/else}
+			<br clear="all" />
+		</div>
+		<hr id="separation" />				
+		<div id="divRank">
+		<span id="spanRank">Rank:</span><span> ${exercise.rank}</span>		
+		#{if signedUser}
+			#{if haveVoted==-1} 
+				&nbsp;&nbsp;&nbsp;
+				<a href = "@{Exercises.rankUp(exercise.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+				&nbsp;&nbsp;&nbsp;
+				<a href = "#" class="btn btn-mini" title="Cannot decrease rank"><i class="icon-minus"></i>Rank down</a>
+				#{/if}
+				#{elseif haveVoted==1}
+				&nbsp;&nbsp;&nbsp;
+				<a href = "#" class="btn btn-mini" title="Cannot increase rank"><i class="icon-plus"></i>Rank up</a>
+				
+				&nbsp;&nbsp;&nbsp;
+				<a href = "@{Exercises.rankDown(exercise.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+				#{/elseif}
+	   			#{else}
+					&nbsp;&nbsp;&nbsp;
+			<a href = "@{Exercises.rankUp(exercise.id)}" class="btn btn-mini" title="Increase Rank"><i class="icon-plus"></i>Rank up</a>
+					&nbsp;&nbsp;&nbsp;
+			<a href = "@{Exercises.rankDown(exercise.id)}" class="btn btn-mini" title="Decrease Rank"><i class="icon-minus"></i>Rank down</a>
+	   			#{/else}
+			&nbsp;&nbsp;&nbsp;
+			
+			<a href="@{WorkoutPlan.addToWorkoutPlan(exercise.id)}" class="btn btn-mini">Add to Workout Plan</a>
+	    #{/if}
+	    </div>       
+     <h5>Comments</h5> 
+       #{list exercise.comments, as:'comment'}
+		<div class="media">
+		   <div class="media-body">
+			<span class="media-heading">Comment Title</span>
+			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
+			<p>${comment.content}</p>
+		   </div>
+		</div>
+		  #{/list}
+			#{else}
+    		<p id="noContent">No comments for now</p>
+			#{/else}    
+			<hr id="separation" />
+	<form class="form-horizontal" id="frmComment" name="frmComment" action="@{ExerciseComments.addComment(exercise.id)}">	 
+	  <div class="control-group">
+	    <div class="controls">
+	      <input type="text" id="txtTitle" placeholder="Comment Title">
+	    </div>
+	  </div>
+	  <div class="control-group">    
+	    <div class="controls">
+	     <textarea rows="4" placeholder="Comment"></textarea>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" id="btnComment" name="btnComment" class="btn">Add Comment</button>
+	    </div>
+	  </div>	  
+	</form>             	        
+        </div>
+	  

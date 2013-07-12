@@ -56,6 +56,12 @@ public class User extends GenericModel implements Serializable{
     public List<UserExercisePreference> userExercisePreferences;
     
     @OneToMany(mappedBy="user")
+    public List<UserTutorial> userTutorials;
+    
+    @OneToMany(mappedBy="user")
+    public List<UserArticle> userArticles;
+    
+    @OneToMany(mappedBy="user")
     public List<BMIHistory> BMIHistoryList;
     
     @OneToMany(mappedBy="user")

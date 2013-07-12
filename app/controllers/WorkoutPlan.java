@@ -37,8 +37,8 @@ public class WorkoutPlan extends Controller{
 				
 			}
 			//strPlan = strPlan.substring(0, strPlan.length()-2);		
-			System.out.println("Refresh");
-			renderTemplate("Application/workout_plan.html", strPlan);
+			
+			renderTemplate("Application/workout_plan.html", strPlan,signedUser);
 		}
 		
 	}
@@ -73,7 +73,9 @@ public class WorkoutPlan extends Controller{
 		models.WorkoutPlan workoutplan = new models.WorkoutPlan(exercise, signedUser, startDate, endDate, days);
 		workoutplan.save();
 		
-		workoutplan();
+		renderTemplate("Application/workout_plan.html",signedUser);
+		
+
 		
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
