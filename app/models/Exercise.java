@@ -67,12 +67,18 @@ public class Exercise extends Model{
 			return 0;
     }
     
-    public  LinkedHashSet<RelatedEquipment> getRelatedEquipments()
+    public  TreeSet<Category> getRelatedCategories()
     {
     	TreeSet <models.Category> exerCategories=new TreeSet <models.Category>();
     	for (ExerciseRelatedCategory exRelatedCat : category) {
     		exerCategories.add(exRelatedCat.category);
 		}
+    	
+    	return exerCategories;
+    }
+    public  LinkedHashSet<RelatedEquipment> getRelatedEquipments()
+    {
+    	TreeSet <models.Category> exerCategories=getRelatedCategories();
     	
     	LinkedHashSet<RelatedEquipment> relEquip=new LinkedHashSet<RelatedEquipment>();
 		for (Category category : exerCategories) {

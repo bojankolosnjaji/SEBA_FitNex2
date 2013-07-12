@@ -1,7 +1,7 @@
 package models;
 
 public enum TutorialLevel {
-	BEGINNER(0), INTERMEDIATE(1), EXPERT(2);
+	BEGINNER(0), INTERMEDIATE(1), EXPERT(2),NONE(-1);
 
 	private final int id;
 
@@ -18,7 +18,9 @@ public enum TutorialLevel {
 			return BEGINNER;
 		if (id.equalsIgnoreCase("intermediate"))
 			return INTERMEDIATE;
+		else if (id.equalsIgnoreCase("expert"))
+			 return EXPERT;
 		else
-			return EXPERT;
+			return NONE;
 	}
 }

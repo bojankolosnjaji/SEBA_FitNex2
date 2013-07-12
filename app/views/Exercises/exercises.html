@@ -74,19 +74,29 @@
                 </tr>
                 <tr>
                   <td>
-                    <select name="selCategory" id="selCategory">
-                      <option value="muscle">Muscle</option>
-                      <option value="research">Research</option>
-                      <option value="psychology">Psychology</option>
+                     <select name="selCategory" id="selCategory">
+                    <option value="none">Choose...</option>
+                    #{list categoryList, as:'category'}
+			   			#{if category.name.equals(selCategory)}
+						 <option value="${category.name}" selected>${category.name}</option>
+						#{/if} 
+						#{else}
+						 <option value="${category.name}">${category.name}</option>
+						#{/else} 
+                    #{/list}     
+					#{else}
+					No exercises for now
+					#{/else} 
                     </select>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <select name="selLevel" id="selLevel">
-                      <option value="beginner">Beginner</option>
-                      <option value="intermediate">Intermediate</option>
-                      <option value="expert">Expert</option>
+                    	<option value="none">Choose...</option>
+						<option value="beginner" >Beginner</option>
+                     	<option value="intermediate"  >Intermediate</option>
+                     	<option value="expert"  >Expert</option>
                     </select>
                   </td>
                 </tr>
@@ -122,3 +132,6 @@
           </tbody>
         </table>
       </div>
+      <script type="text/javascript">
+		 document.getElementById("selLevel").selectedIndex=${selLevelInt};
+      </script>

@@ -39,18 +39,27 @@ public class Category extends Model implements Comparable<Category>{
 		
 	}
 
+	
+	
+	
 	@Override
 	public int compareTo(Category o) {
 		
 		double rank1=getRank();
 		double rank2=o.getRank();
 		
-		
+		System.out.println("COMp1 " + name+" "+rank1+" COMp2 "+o.name+" "+rank2);
         if(rank1>rank2)
             return -1;
         else if(rank1<rank2)
             return +1;
-        else
-            return 0;
+        else{
+        	if (name.equals(o.name))
+        		return 0;
+
+    		else
+    			return 1;
+            
+        }
 	}
 }

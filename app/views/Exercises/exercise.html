@@ -43,6 +43,11 @@ line-height: 1.1em; overflow: auto; text-indent: 2.5px; text-align: justify; }
 		</div>
 		<hr />
 	<h3>Rank: ${exercise.rank}</h3>
+	<ul>
+	#{list relCat, as:'category'}
+				<li>${category.name}</li> 
+	#{/list} #{else} No categories #{/else}
+	</ul>
 	<br />
 	#{if signedUser}
 		<a href = "@{WorkoutPlan.addToWorkoutPlan(exercise.id)}"> Add to my workout plan</a>

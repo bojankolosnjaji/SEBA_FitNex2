@@ -1,9 +1,15 @@
 package controllers;
 
 import play.*;
+import play.db.jpa.GenericModel.JPAQuery;
+import play.db.jpa.JPA;
 import play.mvc.*;
 
 import java.util.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 import oauth.signpost.signature.SigningStrategy;
 
@@ -22,15 +28,16 @@ public class Exercises extends Controller {
 			haveVoted = exercise.haveUserVoted(signedUser.id);
 		}
 
-		
+		TreeSet<Category> relCat = exercise.getRelatedCategories();
 		LinkedHashSet<RelatedEquipment> relEquip = exercise.getRelatedEquipments();
 		
-		renderTemplate("Exercises/exercise.html", exercise, signedUser,haveVoted,relEquip);
+		renderTemplate("Exercises/exercise.html", exercise, signedUser,haveVoted,relCat,relEquip);
 	}
 
 	public static void exercises() {
 
 		User signedUser = null;
+		signedUser = User.convertToUser(Security.session.get("user"));
 
 //		 models.UserExercisePreference.deleteAll();
 //		 models.RelatedEquipment.deleteAll();
@@ -47,7 +54,7 @@ public class Exercises extends Controller {
 
 			Category cat1 = new models.Category("Cardio", "").save();
 			Category cat2 = new models.Category("Strength", "").save();
-			Category cat3 = new models.Category("Endurance ", "").save();
+			Category cat3 = new models.Category("Endurance", "").save();
 
 			Exercise ex1 = new models.Exercise("Exercise1", "Content1", "/public/images/banner_exercises.png",
 					new Date(), ExerciseCategory.MUSCLE,
@@ -84,7 +91,7 @@ public class Exercises extends Controller {
 					"/public/images/eq3.jpg", "").save();
 
 			String email = null;
-			signedUser = User.convertToUser(Security.session.get("user"));
+			
 			if (signedUser != null)
 				email = signedUser.email;
 
@@ -107,10 +114,19 @@ public class Exercises extends Controller {
 			exerciseList = models.Exercise.find("order by date desc").fetch();
 			System.out.println(exerciseList.size() + " Exercise inserted");
 		}
-
+		
 		System.out.println("Exercises fetched");
+		List<Category> categoryList = models.Category.all().fetch();
+		render(exerciseList, signedUser,categoryList);
 
-		render(exerciseList, signedUser);
+		
+	}
+	
+	public static void loadExercises(List<Exercise> exerciseList){
+		System.out.println("Exercises fetched");
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		List<Category> categoryList = models.Category.all().fetch();
+		render(exerciseList, signedUser,categoryList);
 	}
 
 	public static void rankUp(long id) {
@@ -172,23 +188,45 @@ public class Exercises extends Controller {
 		List<Exercise> exerciseList = models.Exercise
 				.find("order by date desc").fetch();
 
-		List<Exercise> exerciseSearchList = models.Exercise
-				.find("level=? and category=? and UPPER(content) LIKE ?   order by date desc",
-						(ExerciseLevel.getValue(selLevel)),
-						ExerciseCategory.getValue(selCategory),
-						"%" + txtSearch.toUpperCase() + "%").fetch();
+		
+		
+		String queryString="select distinct e from Exercise e join e.category r join r.category c where UPPER(e.content) LIKE ?";
+		
+					
+		if(!selCategory.equals("none"))
+			queryString+="and c.name= '"+selCategory+"'";
+		
+		
+		
+		JPAQuery query=models.Exercise
+				.find(queryString,
+						"%" + txtSearch.toUpperCase() + "%");
+		
+		if(!selLevel.equals("none"))
+		{
+			queryString+="and e.level=?";
+			
+			query=models.Exercise
+					.find(queryString,
+							"%" + txtSearch.toUpperCase() + "%",ExerciseLevel.getValue(selLevel));
+		}
+		
+		
+		
+		List<Exercise> exerciseSearchList = query.fetch();
 
+		int selLevelInt=ExerciseLevel.getValue(selLevel).getValue()+1;//To take into account the none option
+		List<Category> categoryList = models.Category.all().fetch();
 		User signedUser = User.convertToUser(Security.session.get("user"));
 		renderTemplate("Exercises/exercises.html", exerciseList,
-				exerciseSearchList, signedUser);
+				exerciseSearchList, signedUser,categoryList,selCategory,selLevelInt);
 
 	}
 
 	public static void exercises_beginner() {
 		List<Exercise> exerciseList = models.Exercise.find(
 				"level=? order by date desc", ExerciseLevel.BEGINNER).fetch();
-		User signedUser = User.convertToUser(Security.session.get("user"));
-		render(exerciseList, signedUser);
+		loadExercises(exerciseList);
 
 	}
 
@@ -196,15 +234,13 @@ public class Exercises extends Controller {
 		List<Exercise> exerciseList = models.Exercise.find(
 				"level=? order by date desc", ExerciseLevel.INTERMEDIATE)
 				.fetch();
-		User signedUser = User.convertToUser(Security.session.get("user"));
-		render(exerciseList, signedUser);
+		loadExercises(exerciseList);
 	}
 
 	public static void exercises_expert() {
 		List<Exercise> exerciseList = models.Exercise.find(
 				"level=? order by date desc", ExerciseLevel.EXPERT).fetch();
-		User signedUser = User.convertToUser(Security.session.get("user"));
-		render(exerciseList, signedUser);
+		loadExercises(exerciseList);
 	}
 
 }

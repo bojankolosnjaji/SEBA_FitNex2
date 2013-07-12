@@ -77,15 +77,17 @@
                 <tr>
                   <td>
                     <select name="selCategory" id="selCategory">
+                   	  <option value="none">Choose...</option>
                       <option value="muscle">Muscle</option>
                       <option value="research">Research</option>
-                      <option value="psychology">Psychology</option>
+                      <option value="nutrition">Nutrition</option>
                     </select>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <select name="selLevel" id="selLevel">
+                      <option value="none">Choose...</option>
                       <option value="beginner">Beginner</option>
                       <option value="intermediate">Intermediate</option>
                       <option value="expert">Expert</option>
@@ -121,3 +123,8 @@
           </tbody>
         </table>
       </div>
+      
+       <script type="text/javascript">
+		 document.getElementById("selLevel").selectedIndex=${selLevelInt};
+		 document.getElementById("selCategory").selectedIndex=${selCategoryInt};
+      </script>
