@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import play.data.validation.Required;
@@ -14,6 +15,7 @@ public class Tutorial extends Model{
 	@Required
 	String title;
 	@Required
+	@Lob
 	public String content;
 
 	public String image;

@@ -140,15 +140,14 @@ public class Tutorials extends Controller {
 
 	}
 
-	public static void loadTutorials(List<Tutorial> tutorialList) {
-		User signedUser = User.convertToUser(Security.session.get("user"));
-		render(tutorialList, signedUser);
-	}
+
 
 	public static void tutorials_beginner() {
 		List<Tutorial> tutorialList = models.Tutorial.find(
 				"level=? order by date desc", TutorialLevel.BEGINNER).fetch();
-		loadTutorials(tutorialList);
+		
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		render(tutorialList, signedUser);
 
 	}
 
@@ -156,13 +155,16 @@ public class Tutorials extends Controller {
 		List<Tutorial> tutorialList = models.Tutorial.find(
 				"level=? order by date desc", TutorialLevel.INTERMEDIATE)
 				.fetch();
-		loadTutorials(tutorialList);
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		render(tutorialList, signedUser);
 	}
 
 	public static void tutorials_expert() {
 		List<Tutorial> tutorialList = models.Tutorial.find(
 				"level=? order by date desc", TutorialLevel.EXPERT).fetch();
-		loadTutorials(tutorialList);
+		
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		render(tutorialList, signedUser);
 	}
 
 }

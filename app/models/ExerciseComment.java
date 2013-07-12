@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
@@ -27,6 +29,8 @@ public class ExerciseComment extends Model{
 	
     
     public String title;
+    @Required
+    @Lob
 	public String content;
 	public Date date;	
 	

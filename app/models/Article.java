@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -17,6 +18,7 @@ public class Article extends Model{
 	@Required
 	String title;
 	@Required
+	@Lob
 	public String content;
 	
 	public String image;

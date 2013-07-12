@@ -64,7 +64,7 @@
 	    		<span id="loginStatusSpan">Incorrect username and/or password</span>
 	    	 #{/if}
             <input class="btn btn-inverse" type="submit" id="btnSubmit" name="btnSubmit" value="Login" />
-            <a href="registration.html" class="btn btn-inverse" type="button">Register</a>
+            <a href="@{Application.signup()}" class="btn btn-inverse" type="button">Register</a>
 	    <a id="forgotPwdLink">Forgot password?</a>
 			</form>                     
       #{/if}

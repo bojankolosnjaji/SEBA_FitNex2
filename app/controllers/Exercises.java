@@ -98,15 +98,17 @@ public class Exercises extends Controller {
 			User user = User.find("byEmail", email).first();
 
 			System.out.println("ex1.id  " + ex1.id);
-			System.out.println("user.id   " + user.id);
-			new UserExercisePreference(ex1, user, 1).save();
-			ex1.rank++;
-			ex1.numberOfVotes++;
-			ex1.save();
-			new UserExercisePreference(ex2, user, -1).save();
-			ex2.rank--;
-			ex2.numberOfVotes++;
-			ex2.save();
+			if (user != null) {
+				System.out.println("user.id   " + user.id);
+				new UserExercisePreference(ex1, user, 1).save();
+				ex1.rank++;
+				ex1.numberOfVotes++;
+				ex1.save();
+				new UserExercisePreference(ex2, user, -1).save();
+				ex2.rank--;
+				ex2.numberOfVotes++;
+				ex2.save();
+			}
 
 			System.out.println("Exercises1 fetched  " + ex1.numberOfVotes
 					+ "   " + ex1.rank);
@@ -122,12 +124,7 @@ public class Exercises extends Controller {
 		
 	}
 	
-	public static void loadExercises(List<Exercise> exerciseList){
-		System.out.println("Exercises fetched");
-		User signedUser = User.convertToUser(Security.session.get("user"));
-		List<Category> categoryList = models.Category.all().fetch();
-		render(exerciseList, signedUser,categoryList);
-	}
+	
 
 	public static void rankUp(long id) {
 		int addResult = UserExercisePreferences
@@ -226,7 +223,9 @@ public class Exercises extends Controller {
 	public static void exercises_beginner() {
 		List<Exercise> exerciseList = models.Exercise.find(
 				"level=? order by date desc", ExerciseLevel.BEGINNER).fetch();
-		loadExercises(exerciseList);
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		List<Category> categoryList = models.Category.all().fetch();
+		render(exerciseList, signedUser,categoryList);
 
 	}
 
@@ -234,13 +233,17 @@ public class Exercises extends Controller {
 		List<Exercise> exerciseList = models.Exercise.find(
 				"level=? order by date desc", ExerciseLevel.INTERMEDIATE)
 				.fetch();
-		loadExercises(exerciseList);
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		List<Category> categoryList = models.Category.all().fetch();
+		render(exerciseList, signedUser,categoryList);
 	}
 
 	public static void exercises_expert() {
 		List<Exercise> exerciseList = models.Exercise.find(
 				"level=? order by date desc", ExerciseLevel.EXPERT).fetch();
-		loadExercises(exerciseList);
+		User signedUser = User.convertToUser(Security.session.get("user"));
+		List<Category> categoryList = models.Category.all().fetch();
+		render(exerciseList, signedUser,categoryList);
 	}
 
 }
