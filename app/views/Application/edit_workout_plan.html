@@ -1,7 +1,6 @@
 #{extends 'fitness-template.html' /}
 #{set title:'Equipments For You' /}
 #{set moreStyles:"
-	
 	#breadCrumbsDiv{
 	margin-top: -3.5%;
 	} 
@@ -11,24 +10,18 @@
 	margin-left: 16%;
 	}
 	
-	#mainContentDiv p{
-	font-size: 0.85em;
-	margin-left: 2%;
-	}
-	
-	#mainContentDiv form *{
-	font-size: 0.95em;
-	}
-	
 " /}
 #{set workoutPlan:"current" /}
 #{set banner:"/public/images/banner_exercises.png" /}
+
+
 <div id="contentnav">
 		<div class="navbar" >
-		  <div class="navbar-inner" >			
+		  <div class="navbar-inner" >
+			<a class="brand" href="#">Edit Workout Plan</a>
 			<ul class="nav">
 			  <li class="active"><a href="/workout_plan.html">Create a Plan</a></li>
-			  <li><a href="/workout_plan.html">View Plans</a></li>
+			  <li><a href="/workout_view.html">View Plans</a></li>
 			</ul>
 		  </div>
 		</div>
@@ -39,47 +32,46 @@
 		  <li><a href="/workout_plan.html">Workout Plan</a> <span class="divider">/</span></li>
 		</ul>
 	 </div>
-    	<br />
-    	<p>Organize Workout. Recommended: ${exercise.daysPerWeek} days per week and ${exercise.timePerDay} hours per day.</p>
-	<form class="form-horizontal" name="frmPlan" id="frmPlan" action="@{WorkoutPlan.addToWorkoutPlanForm}">
+    	<br /><br />
+	<form class="form-horizontal" name="frmPlan" id="frmPlan" action="@{WorkoutPlan.editWorkoutPlanForm}">
 	  <div class="control-group">
 	    <label class="control-label" for="txtStartDate">Start Date</label>
 	    <div class="controls">
-	      <input type="text" id="txtStartDate" name="txtStartDate" placeholder="Start Date">
+	      <input type="text" id="txtStartDate" name="txtStartDate" placeholder="Start Date" value=${plan.startDateString()}>
 	    </div>
 	  </div>
 	  <div class="control-group">
 	    <label class="control-label" for="txtEndDate">End Date</label>
 	    <div class="controls">
-	      <input type="text" id="txtEndDate" name="txtEndDate" placeholder="End Date">
+	      <input type="text" id="txtEndDate" name="txtEndDate" placeholder="End Date" value=${plan.endDateString()}>
 	    </div>
 	  </div>
 	  <div class="control-group">
 	    <span>Select Workout Days</span>
 	    <div class="controls">
 		<label class="checkbox">
-			<input type="checkbox" id="day[0]" name="day" value="1"> Monday
+			<input type="checkbox" id="day[0]" name="day" value="1" ${plan.isChecked(1)}> Monday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day[1]" name="day" value="2"> Tuesday
+			<input type="checkbox" id="day[1]" name="day" value="2" ${plan.isChecked(2)}> Tuesday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day[2]" name="day" value="3"> Wednesday
+			<input type="checkbox" id="day[2]" name="day" value="3" ${plan.isChecked(3)}> Wednesday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day[3]" name="day" value="4"> Thursday
+			<input type="checkbox" id="day[3]" name="day" value="4" ${plan.isChecked(4)}> Thursday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day[4]" name="day" value="5"> Friday
+			<input type="checkbox" id="day[4]" name="day" value="5" ${plan.isChecked(5)}> Friday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day[5]" name="day" value="6"> Saturday
+			<input type="checkbox" id="day[5]" name="day" value="6" ${plan.isChecked(6)}> Saturday
 		</label>
 		<label class="checkbox">
-			<input type="checkbox" id="day[6]" name="day" value="0"> Sunday
+			<input type="checkbox" id="day[6]" name="day" value="0" ${plan.isChecked(0)}> Sunday
                 </label><br />
-	      <button type="submit" class="btn">Add Plan</button>
+	      <button type="submit" class="btn">Submit changes</button>
 	    </div>
-	    <input type="hidden" value="${exercise.id}" name="id" >
+	    <input type="hidden" value="${plan.id}" name="id" >
 	</form>
     </div>

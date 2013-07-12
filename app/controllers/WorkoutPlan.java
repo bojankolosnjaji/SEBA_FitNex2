@@ -37,7 +37,7 @@ public class WorkoutPlan extends Controller{
 				
 			}
 			//strPlan = strPlan.substring(0, strPlan.length()-2);		
-			
+			System.out.println("Refresh");
 			renderTemplate("Application/workout_plan.html", strPlan);
 		}
 		
@@ -53,7 +53,7 @@ public class WorkoutPlan extends Controller{
 	{	
 		User signedUser=User.convertToUser(Security.session.get("user"));
 		Exercise exercise = Exercise.findById(id); 
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		Date startDate;
 		try {
 			startDate = format.parse(txtStartDate);
@@ -73,8 +73,7 @@ public class WorkoutPlan extends Controller{
 		models.WorkoutPlan workoutplan = new models.WorkoutPlan(exercise, signedUser, startDate, endDate, days);
 		workoutplan.save();
 		
-		renderTemplate("Application/workout_plan.html");
-		
+		workoutplan();
 		
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -83,6 +82,55 @@ public class WorkoutPlan extends Controller{
 	
 	}
 	
+	public static void editWorkoutPlanForm(String txtStartDate, String txtEndDate, List<String> day, long id)
+	{
+		models.WorkoutPlan plan = models.WorkoutPlan.findById(id);
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+		Date startDate;
+		try {
+			startDate = format.parse(txtStartDate);
+		
+		Date endDate = format.parse(txtEndDate);
+		System.out.println("Starting date:" + startDate);
+		System.out.println("End date:" + endDate);		
+		List<Integer> days = new ArrayList<Integer>();
+		for (String s: day)
+		{
+			System.out.println("Value:" + s);
+			days.add(Integer.parseInt(s));
+			
+		}
+		plan.startDate = startDate;
+		plan.endDate = endDate;
+		plan.chosenDays = days;
+		plan.save();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		workoutplan();
+		
+	}
+	
+	public static void editWorkoutPlan(long id)
+	{
+		System.out.println(request.params.data.size());
+		String strId = (String) request.params.data.get("id")[0];
+		System.out.println("Editing workout plan with ID: " + strId);	
+		models.WorkoutPlan plan = models.WorkoutPlan.findById(Long.parseLong(strId));
+		renderTemplate("Application/edit_workout_plan.html", plan );
+		
+	}	
+	
+	public static void removeWorkoutPlan(long id)
+	{
+		String strId = (String) request.params.data.get("id")[0];
+		System.out.println("Deleting workout plan with ID: " + strId);
+		models.WorkoutPlan plan = models.WorkoutPlan.findById(Long.parseLong(strId));
+		plan.delete();
+		workoutplan();
+	}
 	
 	
 }

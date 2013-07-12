@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -82,7 +83,9 @@ public class WorkoutPlan extends Model{
 				{
 					if (!calendar.before(startCalendar))
 					{
-						retd = ("{\n\t\t\t title: '" + plan.exercise.content + "',\n");
+						
+						retd = ("{\n\t\t\t title: '" + plan.exercise.title + "',\n");
+						retd += ("\t\t\t id: " + plan.id + ",\n");
 						retd += ("\t\t\t start: new Date(" + calendar.get(Calendar.YEAR) + ", " + (calendar.get(Calendar.MONTH)) + ", " + (calendar.get(Calendar.DATE)+1) + "),\n");
 						retd += ("\t\t\t end: new Date(" + calendar.get(Calendar.YEAR) + ", " + (calendar.get(Calendar.MONTH)) + ", " + (calendar.get(Calendar.DATE)+1) + "),\n");	
 						retd += ("\t\t\t allDay: true\n");
@@ -103,6 +106,32 @@ public class WorkoutPlan extends Model{
 		} while (startCal.get(Calendar.DAY_OF_WEEK)!=1);
 		return ret;
 	}
+	
+	String isChecked(int dayId)
+	{
+		if (chosenDays.contains(dayId))
+		{
+			return "checked";
+					
+		}
+		else
+			return "";
+		
+	}
+	
+	public String startDateString()
+	{
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+		return format.format(startDate);
+	}
+	
+	
+	public String endDateString()
+	{
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+		return format.format(endDate);
+	}
+	
 
 
 

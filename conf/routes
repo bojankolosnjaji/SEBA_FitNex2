@@ -57,3 +57,9 @@ GET     /public/                                staticDir:public
 
 # Admin part
 *		/admin              module:crud
+
+GET   /workoutplan/removeworkoutplan/{id}         WorkoutPlan.removeWorkoutPlan(id:Long)
+
+GET   /workoutplan/editworkoutplan/{id}      WorkoutPlan.editWorkoutPlan(id:Long)
+
+

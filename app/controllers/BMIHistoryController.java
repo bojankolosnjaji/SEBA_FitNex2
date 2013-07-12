@@ -23,7 +23,11 @@ public class BMIHistoryController extends Controller implements Serializable {
 			history.save();
 			System.out.println(signedUser.BMIHistoryList.size());
 			LogMaker.log("BMI_Activity", signedUser, "has added a BMI");
-
+			history.user.height = Float.parseFloat(hiddenHeight);
+			history.user.weight = Float.parseFloat(hiddenWeight);
+			history.user.setBMIValue();
+			history.user.save();
+			
 			renderTemplate("Application/bmi_history.html",
 					signedUser);
 		} else {

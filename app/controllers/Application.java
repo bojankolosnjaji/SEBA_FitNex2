@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import models.Address;
+import models.BMIHistory;
 import models.Gender;
 import models.User;
 import play.mvc.Controller;
@@ -54,7 +55,7 @@ public class Application extends Controller {
     	renderTemplate("Application/registration.html");
     } 
     
-    public static void signupform(String txtFirstName, String txtLastName, String txtUserName, String txtPassword, String txtRepPassword, String selDay, String selMonth, String selYear, String txtWeight, String rdGender, String txtStreet, String txtNumber, String txtCity, String txtProvince, String txtCountry, String txtPhoneNumber, String txtMobile, String chkAgree){
+    public static void signupform(String txtFirstName, String txtLastName, String txtUserName, String txtPassword, String txtRepPassword, String selDay, String selMonth, String selYear, String txtHeight, String txtWeight, String rdGender, String txtStreet, String txtNumber, String txtCity, String txtProvince, String txtCountry, String txtPhoneNumber, String txtMobile, String chkAgree){
     	Address address = new Address(txtStreet, txtNumber, txtCity, txtProvince, txtCountry);
     	
         Date dateStr;
@@ -70,11 +71,12 @@ public class Application extends Controller {
 			engender = Gender.FEMALE;
 		System.out.println("First name: " + txtFirstName);
 
-		user = new User(txtUserName, txtPassword, txtFirstName, txtLastName, dateStr, engender, Double.parseDouble(txtWeight), address, txtPhoneNumber, txtMobile);
+		user = new User(txtUserName, txtPassword, txtFirstName, txtLastName, dateStr, engender, Double.parseDouble(txtHeight), Double.parseDouble(txtWeight), address, txtPhoneNumber, txtMobile);
 		System.out.println("E-mail: " + user.email);
 		address.save();
 		user.save(); 
-		
+		models.BMIHistory history = new BMIHistory(user, new Date(), Float.parseFloat(txtWeight), Float.parseFloat(txtHeight), 0);
+		history.save();
 		LogMaker.log("UserActivity", user, "has just registred");
 		
 		//Cache.set(session.getId() + "-user", user, "30mn");
