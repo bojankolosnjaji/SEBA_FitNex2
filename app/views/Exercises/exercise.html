@@ -172,7 +172,7 @@
        #{list exercise.comments, as:'comment'}
 		<div class="media">
 		   <div class="media-body">
-			<span class="media-heading">Comment Title</span>
+			<span class="media-heading">${comment.title}</span>
 			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
 			<p>${comment.content}</p>
 		   </div>
@@ -185,12 +185,13 @@
 	<form class="form-horizontal" id="frmComment" name="frmComment" action="@{ExerciseComments.addComment(exercise.id)}">	 
 	  <div class="control-group">
 	    <div class="controls">
-	      <input type="text" id="txtTitle" placeholder="Comment Title">
+	      <input type="text" name="txtTitle" id="txtTitle" placeholder="Comment Title">
+	      <input type="hidden" name="exerciseId" id="exerciseId" value=${exercise.id}>
 	    </div>
 	  </div>
 	  <div class="control-group">    
 	    <div class="controls">
-	     <textarea rows="4" placeholder="Comment"></textarea>
+	     <textarea rows="4" name="txtComment" id="txtComment" placeholder="Comment"></textarea>
 	    </div>
 	  </div>
 	  <div class="control-group">

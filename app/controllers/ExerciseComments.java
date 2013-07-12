@@ -14,7 +14,7 @@ import play.mvc.With;
 
 public class ExerciseComments extends Controller{
 	
-	public static void addComment(long id, String txtComment)
+	public static void addComment(long exerciseId, String txtComment,String txtTitle)
 	{
 		//String email = Security.connected();
 		User signedUser=User.convertToUser(Security.session.get("user"));
@@ -29,9 +29,9 @@ public class ExerciseComments extends Controller{
 			Application.index(null);
 		}
 		System.out.println("User:" + user.firstName);
-		Exercise exercise = Exercise.findById(id);
+		Exercise exercise = Exercise.findById(exerciseId);
 		System.out.println("Article: "+ exercise.content);
-		ExerciseComment comment = new ExerciseComment(exercise, user, null, null, "", txtComment, new Date());
+		ExerciseComment comment = new ExerciseComment(exercise, user, null, null, txtTitle, txtComment, new Date());
 		comment.save();
 		
 		LogMaker.log("ExerciseCommentActivity", signedUser, "has added a comment");

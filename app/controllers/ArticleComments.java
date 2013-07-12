@@ -10,7 +10,7 @@ import play.mvc.With;
 
 public class ArticleComments extends Controller{
 	
-	public static void addComment(long id, String txtComment)
+	public static void addComment(long articleId, String txtComment,String txtTitle)
 	{
 		//String email = Security.connected();
 		
@@ -26,9 +26,9 @@ public class ArticleComments extends Controller{
 			Application.index(null);
 		}
 		System.out.println("User:" + user.firstName);
-		Article article = Article.findById(id);
+		Article article = Article.findById(articleId);
 		System.out.println("Article: "+ article.content);
-		ArticleComment comment = new ArticleComment(article, user, null, null, "", txtComment, new Date());
+		ArticleComment comment = new ArticleComment(article, user, null, null, txtTitle, txtComment, new Date());
 		comment.save();
 		
 		LogMaker.log("ArticleCommentActivity", signedUser, "has added a comment");

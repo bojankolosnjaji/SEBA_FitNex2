@@ -132,6 +132,15 @@
           </tbody>
         </table>
       </div>
+      <div id="result" name="result">
+      </div>
       <script type="text/javascript">
 		 document.getElementById("selLevel").selectedIndex=${selLevelInt};
+		 var listAction = #{jsAction @search(':txtSearch', ':selLevel', ':selCategory') /}
+		   $('#result').load(
+		       listAction({search: 'x', size: '10', page: '1'}), 
+		       function() {
+		           $('#content').css('visibility', 'visible')
+		       }
+		   )
       </script>

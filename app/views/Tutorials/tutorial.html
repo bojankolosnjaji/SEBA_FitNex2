@@ -171,7 +171,7 @@
        #{list tutorial.comments, as:'comment'}
 		<div class="media">
 		   <div class="media-body">
-			<span class="media-heading">Comment Title</span>
+			<span class="media-heading">${comment.title}</span>
 			<span class="userid">By: ${comment.user.firstName} ${comment.user.lastName}</span>
 			<p>${comment.content}</p>
 		   </div>
@@ -181,15 +181,16 @@
     		<p id="noContent">No comments for now</p>
 			#{/else}    
 			<hr id="separation" />
-	<form class="form-horizontal" id="frmComment" name="frmComment" action="@{TutorialComments.addComment(tutorial.id)}">	 
+	<form class="form-horizontal" id="frmComment" name="frmComment" method="get" action="@{TutorialComments.addComment(tutorial.id)}">	 
 	  <div class="control-group">
 	    <div class="controls">
-	      <input type="text" id="txtTitle" placeholder="Comment Title">
+	      <input type="text"  name="txtTitle" id="txtTitle" placeholder="Comment Title">
+	      <input type="hidden" name="tutorialId" id="tutorialId" value=${tutorial.id}>
 	    </div>
 	  </div>
 	  <div class="control-group">    
 	    <div class="controls">
-	     <textarea rows="4" placeholder="Comment"></textarea>
+	     <textarea  name="txtComment" id="txtComment" rows="4" placeholder="Comment"></textarea>
 	    </div>
 	  </div>
 	  <div class="control-group">
